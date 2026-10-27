@@ -1,0 +1,2948 @@
+<!doctype html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#090d13" />
+  <meta
+    name="description"
+    content="BIKAR: Plataforma integral de movilidad segura para pasajeros, conductores verificados y comercios aliados."
+  />
+  <title>BIKAR | Movilidad Segura, Conductores y Comercios Aliados</title>
+  <link
+    rel="icon"
+    type="image/png"
+    href="https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/icon-192.png"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bikar-primary: #4785a7;
+      --bikar-hover: #366986;
+      --bikar-deep: #134989;
+      --bikar-cyan: #7cc4e8;
+      --bikar-bg: #090d13;
+      --bikar-surface: #101722;
+      --bikar-text: #f8f9fa;
+      --bikar-muted: #94a3b8;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bikar-bg);
+      color: var(--bikar-text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bikar-bg);
+      color: var(--bikar-text);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.48;
+    }
+
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.025em;
+    }
+
+    button {
+      font-family: inherit;
+      border: none;
+      background: none;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    ul, ol {
+      list-style: none;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090d13;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(71, 133, 167, 0.45);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4785a7;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .container-7xl {
+      max-width: 1280px;
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 0.75rem;
+      padding-right: 0.75rem;
+    }
+    @media (min-width: 640px) {
+      .container-7xl {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .container-7xl {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+      }
+    }
+
+    /* GPU-Optimized Glass Surface (Zero Mobile Blur Lag) */
+    .bikar-glass {
+      background: linear-gradient(155deg, rgba(18, 27, 40, 0.95) 0%, rgba(10, 15, 23, 0.98) 100%);
+      border: 1px solid rgba(71, 133, 167, 0.24);
+      box-shadow: 0 18px 42px -16px rgba(0, 0, 0, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    }
+    @media (min-width: 768px) {
+      .bikar-glass {
+        background: linear-gradient(155deg, rgba(19, 28, 41, 0.88) 0%, rgba(11, 16, 24, 0.94) 100%);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+    }
+
+    .bikar-glass-active {
+      background: linear-gradient(140deg, rgba(19, 73, 137, 0.46) 0%, rgba(71, 133, 167, 0.2) 100%);
+      border: 1px solid rgba(124, 196, 232, 0.68);
+      box-shadow: 0 14px 32px -12px rgba(19, 73, 137, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    }
+
+    .bikar-btn-gradient {
+      background: linear-gradient(92deg, #134989 0%, #2d638c 50%, #4785a7 100%);
+      box-shadow: 0 10px 26px -8px rgba(19, 73, 137, 0.72);
+      color: #ffffff;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .bikar-btn-gradient:hover {
+      background: linear-gradient(92deg, #1757a3 0%, #3774a1 50%, #5699bd 100%);
+    }
+
+    /* Zero-Lag GPU Pointillism Video Background */
+    .pointillism-bg-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .pointillism-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.48;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+    }
+    .pointillism-dots-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image: radial-gradient(circle, transparent 1.45px, #090d13 1.95px);
+      background-size: 5px 5px;
+    }
+    .pointillism-fade-initial {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9, 13, 19, 0.4) 0%, rgba(9, 13, 19, 0.24) 55%, #090d13 100%);
+      pointer-events: none;
+    }
+    .final-part-wrap {
+      position: relative;
+      overflow: hidden;
+    }
+    .final-video-band {
+      top: 50%;
+      bottom: auto;
+      height: 66%;
+      transform: translateY(-50%);
+    }
+    @media (min-width: 640px) {
+      .final-video-band {
+        height: 68%;
+      }
+    }
+    .pointillism-fade-final {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, #090d13 0%, rgba(9, 13, 19, 0.2) 22%, rgba(9, 13, 19, 0.2) 78%, #090d13 100%);
+      pointer-events: none;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(8, 12, 18, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .progress-track {
+      height: 3px;
+      width: 100%;
+      background: #0f1722;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 100%;
+      transform-origin: left center;
+      transform: scaleX(0);
+      background: linear-gradient(90deg, #134989 0%, #4785a7 50%, #7cc4e8 100%);
+      will-change: transform;
+    }
+    .header-inner {
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+    @media (min-width: 640px) {
+      .header-inner {
+        height: 70px;
+        gap: 1rem;
+      }
+    }
+    .brand-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      text-align: left;
+    }
+    .logo-wrap {
+      position: relative;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+      .logo-wrap {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    .logo-img {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 10px;
+      background: #ffffff;
+      padding: 3px;
+      border: 1px solid rgba(124, 196, 232, 0.4);
+    }
+    .brand-title {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1;
+      display: block;
+    }
+    @media (min-width: 640px) {
+      .brand-title {
+        font-size: 1.25rem;
+      }
+    }
+    .brand-sub {
+      font-size: 11px;
+      color: var(--bikar-muted);
+      margin-top: 3px;
+      display: none;
+    }
+    @media (min-width: 640px) {
+      .brand-sub {
+        display: block;
+      }
+    }
+    .main-nav {
+      display: none;
+      align-items: center;
+      gap: 0.25rem;
+    }
+    @media (min-width: 768px) {
+      .main-nav {
+        display: flex;
+      }
+    }
+    .nav-link {
+      padding: 0.5rem 0.9rem;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .nav-link:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+    .header-cta {
+      padding: 0.5rem 0.9rem;
+      border-radius: 11px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    @media (min-width: 640px) {
+      .header-cta {
+        padding: 0.625rem 1.25rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Hero Section */
+    .hero-section {
+      position: relative;
+      overflow: hidden;
+      padding: 1rem 0 1.5rem;
+    }
+    @media (min-width: 640px) {
+      .hero-section {
+        padding: 3.5rem 0 5rem;
+      }
+    }
+    .ambient-radial-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(600px circle at 25% 15%, rgba(71, 133, 167, 0.16), transparent 70%),
+        radial-gradient(500px circle at 85% 40%, rgba(19, 73, 137, 0.14), transparent 70%);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 10;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      align-items: center;
+    }
+    @media (min-width: 640px) {
+      .hero-grid {
+        gap: 2.25rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 3rem;
+      }
+      .hero-left {
+        grid-column: span 6 / span 6;
+      }
+      .hero-right {
+        grid-column: span 6 / span 6;
+      }
+    }
+
+    .hero-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 9999px;
+      background: rgba(19, 73, 137, 0.35);
+      border: 1px solid rgba(124, 196, 232, 0.35);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--bikar-cyan);
+      margin-bottom: 0.75rem;
+    }
+    @media (min-width: 640px) {
+      .hero-pill {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.72rem;
+        margin-bottom: 1.15rem;
+      }
+    }
+
+    .dot-emerald {
+      width: 7px;
+      height: 7px;
+      border-radius: 9999px;
+      background: #34d399;
+      box-shadow: 0 0 8px #34d399;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-size: clamp(1.75rem, 4.5vw, 3.35rem);
+      font-weight: 700;
+      line-height: 1.1;
+      color: #ffffff;
+      margin-bottom: 0.75rem;
+    }
+    @media (min-width: 640px) {
+      .hero-title {
+        margin-bottom: 1.15rem;
+      }
+    }
+    .text-gradient-bikar {
+      background: linear-gradient(90deg, #7cc4e8 0%, #4785a7 50%, #bae6fd 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      line-height: 1.55;
+      max-width: 36rem;
+      margin-bottom: 0.95rem;
+    }
+    @media (min-width: 640px) {
+      .hero-desc {
+        font-size: 1.05rem;
+        line-height: 1.65;
+        margin-bottom: 1.6rem;
+      }
+    }
+
+    .hero-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.5rem;
+      margin-bottom: 0.9rem;
+    }
+    @media (min-width: 640px) {
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.875rem;
+        margin-bottom: 1.75rem;
+      }
+    }
+    .btn-hero-primary {
+      padding: 0.65rem 0.75rem;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-align: center;
+    }
+    .btn-hero-secondary {
+      padding: 0.65rem 0.75rem;
+      border-radius: 12px;
+      background: #101926;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      text-align: center;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    @media (min-width: 640px) {
+      .btn-hero-primary, .btn-hero-secondary {
+        padding: 0.875rem 1.4rem;
+        border-radius: 16px;
+        font-size: 0.9rem;
+      }
+    }
+    .btn-hero-secondary:hover {
+      background: #172436;
+      border-color: rgba(124, 196, 232, 0.45);
+    }
+
+    /* Compact 3-Column Role Strip even on Mobile */
+    .role-quick-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+    @media (min-width: 640px) {
+      .role-quick-grid {
+        gap: 0.75rem;
+      }
+    }
+    .role-quick-card {
+      padding: 0.5rem;
+      border-radius: 14px;
+      background: rgba(14, 22, 34, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 0.4rem;
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    @media (min-width: 640px) {
+      .role-quick-card {
+        padding: 0.75rem;
+        border-radius: 16px;
+        flex-direction: row;
+        text-align: left;
+        gap: 0.75rem;
+      }
+    }
+    .role-quick-card:hover {
+      background: #142031;
+      border-color: rgba(124, 196, 232, 0.55);
+    }
+
+    .photo-badge {
+      position: relative;
+      overflow: hidden;
+      border-radius: 11px;
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(71, 133, 167, 0.4);
+    }
+    @media (min-width: 640px) {
+      .photo-badge {
+        border-radius: 14px;
+        width: 48px;
+        height: 48px;
+      }
+    }
+    .photo-badge.active {
+      border: 2px solid #7cc4e8;
+      box-shadow: 0 0 16px rgba(71, 133, 167, 0.4);
+    }
+    .photo-badge img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Hero Right Video Showcase (Zero-Clipping Natural Flex Overlay) */
+    .showcase-frame {
+      border-radius: 22px;
+      padding: 0.5rem;
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .showcase-frame {
+        border-radius: 28px;
+        padding: 0.75rem;
+      }
+    }
+    .showcase-viewport {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      min-height: 340px;
+      background: #0b111a;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 0.75rem;
+      gap: 0.75rem;
+    }
+    @media (min-width: 640px) {
+      .showcase-viewport {
+        border-radius: 22px;
+        min-height: 430px;
+        padding: 1rem;
+      }
+    }
+    .showcase-main-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .showcase-overlay-bottom {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(to top, rgba(7, 11, 17, 0.95) 0%, rgba(7, 11, 17, 0.3) 50%, rgba(7, 11, 17, 0.25) 100%),
+        linear-gradient(to right, rgba(7, 11, 17, 0.65) 0%, transparent 65%);
+    }
+    .showcase-top-badge {
+      position: relative;
+      z-index: 20;
+      align-self: flex-start;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.375rem 0.75rem;
+      border-radius: 14px;
+      background: rgba(9, 16, 26, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .showcase-left-popups {
+      position: relative;
+      z-index: 20;
+      align-self: flex-start;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      width: 100%;
+      max-width: 238px;
+      margin: auto 0;
+    }
+    @media (min-width: 640px) {
+      .showcase-left-popups {
+        max-width: 268px;
+      }
+    }
+    .floating-sat {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.375rem 0.75rem 0.375rem 0.375rem;
+      border-radius: 14px;
+      background: rgba(13, 22, 35, 0.92);
+      border: 1px solid rgba(124, 196, 232, 0.36);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
+      text-align: left;
+      width: 100%;
+      transition: border-color 0.2s ease;
+      will-change: transform;
+    }
+    @media (min-width: 640px) {
+      .floating-sat {
+        padding: 0.5rem 0.85rem 0.5rem 0.5rem;
+        border-radius: 16px;
+      }
+    }
+    .floating-sat:hover {
+      border-color: rgba(124, 196, 232, 0.78);
+    }
+    .floating-sat img {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border-radius: 9px;
+      object-fit: cover;
+      border: 1px solid rgba(124, 196, 232, 0.45);
+    }
+    @media (min-width: 640px) {
+      .floating-sat img {
+        width: 40px;
+        height: 40px;
+        border-radius: 11px;
+      }
+    }
+
+    /* Full-Visibility Uncut Bottom Caption & CTA */
+    .showcase-bottom-bar {
+      position: relative;
+      z-index: 20;
+      width: 100%;
+      padding-top: 0.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+    }
+    @media (min-width: 640px) {
+      .showcase-bottom-bar {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+    }
+    .btn-comenzar-showcase {
+      flex-shrink: 0;
+      white-space: nowrap;
+      width: 100%;
+      text-align: center;
+      padding: 0.625rem 1rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 700;
+    }
+    @media (min-width: 640px) {
+      .btn-comenzar-showcase {
+        width: auto;
+        font-size: 0.85rem;
+      }
+    }
+
+    /* Section 2: ScrollTrigger Frame Sequence (Compact Mobile Fit) */
+    .sequence-pin-wrap {
+      min-height: 100svh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0.75rem 0;
+      background: linear-gradient(180deg, #090d13 0%, #0c1420 50%, #090d13 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .sequence-pin-wrap {
+        padding: 2rem 0;
+      }
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--bikar-cyan);
+      margin-bottom: 0.2rem;
+    }
+    @media (min-width: 640px) {
+      .section-eyebrow {
+        font-size: 0.75rem;
+        margin-bottom: 0.4rem;
+      }
+    }
+
+    .sequence-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    @media (min-width: 640px) {
+      .sequence-header {
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+      }
+    }
+
+    .sequence-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.625rem;
+      align-items: stretch;
+    }
+    @media (min-width: 640px) {
+      .sequence-grid {
+        gap: 1.25rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .sequence-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
+      .seq-left {
+        grid-column: span 7 / span 7;
+        min-width: 0;
+      }
+      .seq-right {
+        grid-column: span 5 / span 5;
+        min-width: 0;
+        overflow: hidden;
+      }
+    }
+
+    .canvas-card {
+      border-radius: 20px;
+      padding: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    @media (min-width: 640px) {
+      .canvas-card {
+        border-radius: 28px;
+        padding: 0.875rem;
+      }
+    }
+    .canvas-viewport {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: #090d14;
+    }
+    @media (min-width: 640px) {
+      .canvas-viewport {
+        border-radius: 20px;
+      }
+    }
+    #bikar-sequence-canvas {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 16 / 9.2;
+    }
+
+    .canvas-top-pills {
+      position: absolute;
+      top: 0.6rem;
+      left: 0.6rem;
+      right: 0.6rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.4rem;
+      pointer-events: none;
+    }
+    @media (min-width: 640px) {
+      .canvas-top-pills {
+        top: 1rem;
+        left: 1rem;
+        right: 1rem;
+      }
+    }
+    .glass-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      background: rgba(9, 16, 26, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    @media (min-width: 640px) {
+      .glass-pill {
+        padding: 0.375rem 0.8rem;
+        font-size: 0.75rem;
+      }
+    }
+    .glass-pill-emerald {
+      border-color: rgba(52, 211, 153, 0.35);
+      color: #6ee7b7;
+      font-weight: 600;
+    }
+
+    .canvas-bottom-caption {
+      position: absolute;
+      bottom: 0.65rem;
+      left: 0.75rem;
+      right: 0.75rem;
+      pointer-events: none;
+    }
+    @media (min-width: 640px) {
+      .canvas-bottom-caption {
+        bottom: 1.25rem;
+        left: 1.25rem;
+        right: 1.25rem;
+      }
+    }
+
+    .scrubber-wrap {
+      margin-top: 0.5rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    @media (min-width: 640px) {
+      .scrubber-wrap {
+        margin-top: 0.875rem;
+        padding-top: 0.75rem;
+      }
+    }
+    .scrubber-labels {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--bikar-muted);
+      margin-bottom: 0.35rem;
+    }
+    .scrubber-ticks {
+      display: grid;
+      grid-template-columns: repeat(40, minmax(0, 1fr));
+      gap: 2px;
+      height: 16px;
+      align-items: center;
+      cursor: pointer;
+    }
+    @media (min-width: 640px) {
+      .scrubber-ticks {
+        gap: 4px;
+        height: 20px;
+      }
+    }
+    .scrubber-tick {
+      border-radius: 9999px;
+      height: 6px;
+      background: #1e293b;
+    }
+    .scrubber-tick.passed {
+      height: 10px;
+      background: #4785a7;
+    }
+    .scrubber-tick.current {
+      height: 16px;
+      background: #7cc4e8;
+    }
+    @media (min-width: 640px) {
+      .scrubber-tick.current {
+        height: 20px;
+      }
+    }
+
+    .chapters-panel {
+      border-radius: 20px;
+      padding: 0.65rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    @media (min-width: 640px) {
+      .chapters-panel {
+        border-radius: 28px;
+        padding: 1.25rem;
+      }
+    }
+    .chapters-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    @media (min-width: 640px) {
+      .chapters-panel-head {
+        padding-bottom: 0.875rem;
+        margin-bottom: 0.75rem;
+      }
+    }
+    .chapters-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.375rem;
+      flex: 1;
+      min-width: 0;
+      align-content: center;
+    }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .chapters-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.6rem;
+      }
+    }
+    @media (min-width: 1024px) {
+      .chapters-list {
+        gap: 0.625rem;
+      }
+    }
+    .chapter-btn {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      text-align: left;
+      border-radius: 12px;
+      padding: 0.4rem 0.55rem;
+      background: rgba(12, 19, 30, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: background 0.2s ease, border-color 0.2s ease;
+    }
+    .chapter-btn > div {
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+    }
+    @media (min-width: 640px) {
+      .chapter-btn {
+        border-radius: 16px;
+        padding: 0.65rem 0.75rem;
+        gap: 0.875rem;
+      }
+    }
+    .chapter-btn:hover {
+      background: #121d2d;
+    }
+    .chapter-btn.active {
+      background: linear-gradient(140deg, rgba(19, 73, 137, 0.46) 0%, rgba(71, 133, 167, 0.2) 100%);
+      border: 1px solid rgba(124, 196, 232, 0.68);
+    }
+    .chapter-btn .photo-badge {
+      width: 36px;
+      height: 36px;
+    }
+    @media (min-width: 640px) {
+      .chapter-btn .photo-badge {
+        width: 54px;
+        height: 54px;
+      }
+    }
+    .chapter-sub-text {
+      display: none;
+    }
+    @media (min-width: 640px) {
+      .chapter-sub-text {
+        display: block;
+      }
+    }
+
+    /* Section 3: Services & Checklist (Compact Horizontal Mobile Cards) */
+    .services-section {
+      padding: 1.75rem 0;
+    }
+    @media (min-width: 640px) {
+      .services-section {
+        padding: 4.5rem 0;
+      }
+    }
+    .filter-bar {
+      display: flex;
+      overflow-x: auto;
+      align-items: center;
+      gap: 0.45rem;
+      padding-bottom: 0.25rem;
+      margin: 1rem 0 1.1rem;
+    }
+    @media (min-width: 640px) {
+      .filter-bar {
+        flex-wrap: wrap;
+        gap: 0.625rem;
+        margin: 1.75rem 0 2rem;
+      }
+    }
+    .filter-tab {
+      flex-shrink: 0;
+      padding: 0.5rem 0.85rem;
+      border-radius: 11px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: #101824;
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    @media (min-width: 640px) {
+      .filter-tab {
+        padding: 0.625rem 1rem;
+        font-size: 0.85rem;
+      }
+    }
+    .filter-tab.active {
+      background: linear-gradient(92deg, #134989 0%, #2d638c 50%, #4785a7 100%);
+      color: #ffffff;
+      border-color: rgba(124, 196, 232, 0.55);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+      align-items: start;
+    }
+    @media (min-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 2rem;
+      }
+      .srv-left {
+        grid-column: span 7 / span 7;
+      }
+      .srv-right {
+        grid-column: span 5 / span 5;
+        position: sticky;
+        top: 5.25rem;
+      }
+    }
+
+    .modules-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+    @media (min-width: 640px) {
+      .modules-list {
+        gap: 1rem;
+      }
+    }
+    .module-card {
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      transition: border-color 0.25s ease;
+    }
+    @media (min-width: 640px) {
+      .module-card {
+        border-radius: 26px;
+      }
+    }
+    .module-card:hover {
+      border-color: rgba(124, 196, 232, 0.55);
+    }
+    .module-photo-wrap {
+      position: relative;
+      width: 112px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    @media (min-width: 640px) {
+      .module-photo-wrap {
+        width: 208px;
+      }
+    }
+    .module-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .module-cat-pill {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 6px;
+      background: rgba(9, 16, 26, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 9px;
+      font-weight: 700;
+      color: var(--bikar-cyan);
+      max-width: 96px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media (min-width: 640px) {
+      .module-cat-pill {
+        top: 0.75rem;
+        left: 0.75rem;
+        padding: 0.25rem 0.625rem;
+        font-size: 11px;
+        max-width: none;
+      }
+    }
+    .module-body {
+      padding: 0.75rem;
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    @media (min-width: 640px) {
+      .module-body {
+        padding: 1.25rem;
+      }
+    }
+    .highlights-row {
+      margin-top: 0.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.25rem;
+    }
+    @media (min-width: 640px) {
+      .highlights-row {
+        margin-top: 0.875rem;
+        gap: 0.375rem;
+      }
+    }
+    .highlight-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 0.15rem 0.5rem;
+      border-radius: 6px;
+      background: #0b121c;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e2e8f0;
+    }
+    @media (min-width: 640px) {
+      .highlight-chip {
+        font-size: 11px;
+        padding: 0.25rem 0.625rem;
+      }
+    }
+    .module-footer {
+      margin-top: 0.625rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      justify-content: flex-end;
+    }
+    @media (min-width: 640px) {
+      .module-footer {
+        margin-top: 1rem;
+        padding-top: 0.75rem;
+      }
+    }
+    .btn-module-go {
+      padding: 0.4rem 0.8rem;
+      border-radius: 10px;
+      background: rgba(19, 73, 137, 0.5);
+      border: 1px solid rgba(124, 196, 232, 0.4);
+      font-size: 11px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    @media (min-width: 640px) {
+      .btn-module-go {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    /* Checklist Card */
+    .checklist-panel {
+      border-radius: 22px;
+      padding: 0.9rem;
+    }
+    @media (min-width: 640px) {
+      .checklist-panel {
+        border-radius: 28px;
+        padding: 1.5rem;
+      }
+    }
+    .readiness-track {
+      width: 100%;
+      height: 6px;
+      border-radius: 9999px;
+      background: #090e16;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      margin: 0.65rem 0 0.9rem;
+    }
+    @media (min-width: 640px) {
+      .readiness-track {
+        height: 8px;
+        margin: 0.875rem 0 1.25rem;
+      }
+    }
+    .readiness-fill {
+      height: 100%;
+      border-radius: 9999px;
+      transition: width 0.3s ease;
+      background: linear-gradient(90deg, #134989 0%, #4785a7 55%, #34d399 100%);
+    }
+    .checklist-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .check-item-btn {
+      width: 100%;
+      text-align: left;
+      padding: 0.6rem;
+      border-radius: 14px;
+      background: rgba(12, 18, 27, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    @media (min-width: 640px) {
+      .check-item-btn {
+        padding: 0.75rem;
+        border-radius: 16px;
+        gap: 0.875rem;
+      }
+    }
+    .check-item-btn.checked {
+      background: rgba(18, 34, 54, 0.85);
+      border-color: rgba(124, 196, 232, 0.55);
+    }
+    .status-pill-ready {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 0.1rem 0.5rem;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #6ee7b7;
+      flex-shrink: 0;
+    }
+    .status-pill-pending {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 0.1rem 0.5rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #94a3b8;
+      flex-shrink: 0;
+    }
+
+    /* Section 4: Embedded BIKAR Portal */
+    .portal-section {
+      padding: 1.5rem 0 2.25rem;
+    }
+    @media (min-width: 640px) {
+      .portal-section {
+        padding: 4rem 0;
+      }
+    }
+    .portal-workspace {
+      border-radius: 22px;
+      padding: 0.65rem;
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+    @media (min-width: 640px) {
+      .portal-workspace {
+        border-radius: 30px;
+        padding: 1.25rem;
+      }
+    }
+    .portal-workspace.immersive {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      border-radius: 0;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem;
+    }
+
+    .portal-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding-bottom: 0.65rem;
+      margin-bottom: 0.75rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    @media (min-width: 640px) {
+      .portal-toolbar {
+        gap: 0.75rem;
+        padding-bottom: 0.875rem;
+        margin-bottom: 1rem;
+      }
+    }
+
+    .viewport-segmented {
+      display: flex;
+      overflow-x: auto;
+      max-width: 100%;
+      background: #090e16;
+      padding: 3px;
+      border-radius: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      gap: 3px;
+    }
+    .vp-btn {
+      flex-shrink: 0;
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #cbd5e1;
+    }
+    @media (min-width: 640px) {
+      .vp-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.75rem;
+      }
+    }
+    .vp-btn.active {
+      background: linear-gradient(92deg, #134989 0%, #2d638c 50%, #4785a7 100%);
+      color: #ffffff;
+    }
+
+    .toolbar-btn {
+      padding: 0.4rem 0.7rem;
+      border-radius: 10px;
+      background: #101926;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 11px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+    @media (min-width: 640px) {
+      .toolbar-btn {
+        padding: 0.45rem 0.85rem;
+        font-size: 0.75rem;
+      }
+    }
+
+    .portal-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .portal-body.with-guide {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        gap: 1.5rem;
+      }
+      .portal-body.with-guide .iframe-col {
+        grid-column: span 7 / span 7;
+      }
+      .portal-body.with-guide .guide-col {
+        grid-column: span 5 / span 5;
+      }
+    }
+
+    .iframe-col {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .device-shell {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: transparent;
+      box-shadow: none;
+    }
+    .device-shell.mode-mobile {
+      max-width: 390px;
+      border-radius: 26px;
+      border: 4px solid #1a2636;
+      outline: 1px solid rgba(124, 196, 232, 0.35);
+    }
+    @media (min-width: 640px) {
+      .device-shell.mode-mobile {
+        border-radius: 34px;
+        border-width: 6px;
+      }
+    }
+    .device-shell.mode-tablet {
+      max-width: 800px;
+      border-radius: 24px;
+      border: 4px solid #1a2636;
+      outline: 1px solid rgba(71, 133, 167, 0.35);
+    }
+    .device-shell.mode-wide {
+      max-width: none;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .device-shell.mode-immersive {
+      max-width: 1152px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .phone-status-bar {
+      height: 22px;
+      background: #0b1017;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      font-size: 10px;
+      font-weight: 600;
+      color: var(--bikar-muted);
+    }
+    .phone-speaker {
+      width: 50px;
+      height: 5px;
+      border-radius: 9999px;
+      background: #334155;
+    }
+
+    .iframe-loader {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      background: #0b0f14;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    #bikar-embedded-iframe {
+      width: 100%;
+      display: block;
+      border: 0;
+      background: transparent;
+      height: 450px;
+    }
+    @media (min-width: 640px) {
+      #bikar-embedded-iframe {
+        height: 505px;
+      }
+    }
+    .device-shell.mode-tablet #bikar-embedded-iframe,
+    .device-shell.mode-wide #bikar-embedded-iframe {
+      height: 470px;
+    }
+    @media (min-width: 640px) {
+      .device-shell.mode-tablet #bikar-embedded-iframe,
+      .device-shell.mode-wide #bikar-embedded-iframe {
+        height: 525px;
+      }
+    }
+    .device-shell.mode-immersive #bikar-embedded-iframe {
+      height: calc(100dvh - 135px);
+      max-height: 600px;
+    }
+
+    .guide-panel {
+      border-radius: 20px;
+      background: rgba(11, 17, 26, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 0.9rem;
+    }
+    @media (min-width: 640px) {
+      .guide-panel {
+        border-radius: 26px;
+        padding: 1.25rem;
+      }
+    }
+    .guide-steps-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    @media (min-width: 640px) and (max-width: 1023px) {
+      .guide-steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+    .guide-step {
+      padding: 0.55rem;
+      border-radius: 14px;
+      background: rgba(16, 25, 38, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    /* Semi-Transparent Footer */
+    .site-footer {
+      position: relative;
+      z-index: 10;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(7, 10, 15, 0.45);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      padding: 1.5rem 0;
+    }
+    @media (min-width: 640px) {
+      .site-footer {
+        padding: 2.5rem 0;
+      }
+    }
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .footer-inner {
+        flex-direction: row;
+      }
+    }
+
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- STICKY HEADER -->
+  <header class="site-header">
+    <div class="progress-track">
+      <div id="global-progress-bar" class="progress-bar"></div>
+    </div>
+    <div class="container-7xl header-inner">
+      <button type="button" class="brand-btn" data-scroll="#inicio">
+        <div class="logo-wrap">
+          <img
+            src="https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/icon-192.png"
+            alt="BIKAR Logo Oficial"
+            decoding="async"
+            class="logo-img"
+          />
+        </div>
+        <div>
+          <span class="font-display brand-title">BIKAR</span>
+          <span class="brand-sub">Seguridad · Comodidad · Confianza</span>
+        </div>
+      </button>
+
+      <nav class="main-nav">
+        <button type="button" class="nav-link" data-scroll="#inicio">Inicio</button>
+        <button type="button" class="nav-link" data-scroll="#experiencia-ruta">Cómo Funciona</button>
+        <button type="button" class="nav-link" data-scroll="#servicios-bikar">Perfiles y Servicios</button>
+        <button type="button" class="nav-link" data-scroll="#requisitos-bikar">Requisitos</button>
+      </nav>
+
+      <div>
+        <button type="button" class="bikar-btn-gradient header-cta" data-scroll="#acceso-bikar">
+          Ingresar a BIKAR
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section id="inicio" class="hero-section">
+      <div class="pointillism-bg-wrap">
+        <video
+          src="https://i.imgur.com/CuSh8t9.mp4"
+          loop
+          muted
+          playsinline
+          preload="metadata"
+          class="pointillism-video smart-loop-video"
+        ></video>
+        <div class="pointillism-dots-overlay"></div>
+        <div class="pointillism-fade-initial"></div>
+      </div>
+
+      <div class="ambient-radial-bg"></div>
+
+      <div class="container-7xl hero-grid">
+        <!-- Left Copy -->
+        <div class="hero-left">
+          <div class="hero-stagger hero-pill">
+            <span class="dot-emerald"></span>
+            <span>Movilidad Inteligente y Comercios Conectados</span>
+          </div>
+
+          <h1 class="hero-stagger hero-title">
+            Viaja, conduce y crece en tu ciudad con
+            <span class="text-gradient-bikar">BIKAR</span>
+          </h1>
+
+          <p class="hero-stagger hero-desc">
+            Una plataforma creada bajo estándares de
+            <strong style="color:#fff">Seguridad, Comodidad y Confianza</strong>.
+            Solicita un viaje inmediato, genera ingresos al volante o conecta los envíos
+            de tu negocio desde un mismo lugar.
+          </p>
+
+          <div class="hero-stagger hero-actions">
+            <button type="button" class="bikar-btn-gradient btn-hero-primary" data-scroll="#acceso-bikar">
+              Iniciar Sesión o Registrarse
+            </button>
+            <button type="button" class="btn-hero-secondary" data-scroll="#experiencia-ruta">
+              Conocer la Experiencia
+            </button>
+          </div>
+
+          <!-- 3 Real-Photo Role Cards (Compact 3-Col Strip on Mobile) -->
+          <div class="hero-stagger role-quick-grid">
+            <button type="button" class="role-quick-card" data-launch-preset="mobile" data-launch-title="Perfil Pasajero">
+              <div class="photo-badge">
+                <img src="https://images.pexels.com/photos/7405/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=420" alt="Pasajero" loading="lazy" decoding="async" />
+              </div>
+              <div style="min-width:0">
+                <div style="font-size:0.8rem;font-weight:700;color:#fff">Pasajero</div>
+                <div style="font-size:10px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Viajes al instante</div>
+              </div>
+            </button>
+
+            <button type="button" class="role-quick-card" data-launch-preset="mobile" data-launch-title="Perfil Conductor">
+              <div class="photo-badge">
+                <img src="https://images.pexels.com/photos/16702626/pexels-photo-16702626.jpeg?auto=compress&cs=tinysrgb&w=480" alt="Conductor" loading="lazy" decoding="async" />
+              </div>
+              <div style="min-width:0">
+                <div style="font-size:0.8rem;font-weight:700;color:#fff">Conductor</div>
+                <div style="font-size:10px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Solicitudes en vivo</div>
+              </div>
+            </button>
+
+            <button type="button" class="role-quick-card" data-launch-preset="tablet" data-launch-title="Perfil Comercio">
+              <div class="photo-badge">
+                <img src="https://images.pexels.com/photos/12935053/pexels-photo-12935053.jpeg?auto=compress&cs=tinysrgb&w=420" alt="Comercio" loading="lazy" decoding="async" />
+              </div>
+              <div style="min-width:0">
+                <div style="font-size:0.8rem;font-weight:700;color:#fff">Comercio</div>
+                <div style="font-size:10px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Negocios aliados</div>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Video Showcase (Zero Clipping) -->
+        <div class="hero-right hero-stagger">
+          <div class="bikar-glass showcase-frame">
+            <div class="showcase-viewport">
+              <video
+                src="https://i.imgur.com/o4y7e1j.mp4"
+                loop
+                muted
+                playsinline
+                preload="auto"
+                class="showcase-main-img smart-loop-video"
+              ></video>
+              <div class="showcase-overlay-bottom"></div>
+
+              <div class="showcase-top-badge">
+                <img
+                  src="https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/icon-192.png"
+                  alt="BIKAR"
+                  decoding="async"
+                  style="width:22px;height:22px;border-radius:6px;background:#fff;padding:2px;object-fit:contain"
+                />
+                <span style="font-size:0.75rem;font-weight:600;color:#fff">Flota Verificada BIKAR</span>
+                <span class="dot-emerald"></span>
+              </div>
+
+              <!-- Left-Aligned Organized Column of Popups -->
+              <div class="showcase-left-popups">
+                <button type="button" class="floating-sat hero-left-popup sat-1" data-scroll="#experiencia-ruta">
+                  <img src="https://images.pexels.com/photos/16702626/pexels-photo-16702626.jpeg?auto=compress&cs=tinysrgb&w=480" alt="Conductores Verificados" loading="lazy" decoding="async" />
+                  <div style="min-width:0">
+                    <div style="display:flex;align-items:center;gap:6px">
+                      <span class="dot-emerald"></span>
+                      <span style="font-size:0.75rem;font-weight:700;color:#fff">Conductores Verificados</span>
+                    </div>
+                    <p style="font-size:11px;color:#cbd5e1;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Documentación y perfil validados</p>
+                  </div>
+                </button>
+
+                <button type="button" class="floating-sat hero-left-popup sat-3" data-scroll="#acceso-bikar">
+                  <img src="https://images.pexels.com/photos/3771134/pexels-photo-3771134.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Acceso Protegido" loading="lazy" decoding="async" />
+                  <div style="min-width:0">
+                    <span style="font-size:0.75rem;font-weight:700;color:#fff;display:block">Acceso Protegido</span>
+                    <span style="font-size:11px;color:#7cc4e8;display:block;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Validación con Selfie y DNI</span>
+                  </div>
+                </button>
+
+                <button type="button" class="floating-sat hero-left-popup sat-2" data-scroll="#servicios-bikar">
+                  <img src="https://images.pexels.com/photos/12935053/pexels-photo-12935053.jpeg?auto=compress&cs=tinysrgb&w=420" alt="Comercios Aliados" loading="lazy" decoding="async" />
+                  <div style="min-width:0">
+                    <span style="font-size:0.75rem;font-weight:700;color:#fff;display:block">Comercios Aliados</span>
+                    <p style="font-size:11px;color:#cbd5e1;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Registra tu local y gestiona envíos</p>
+                  </div>
+                </button>
+              </div>
+
+              <!-- Full-Visibility Uncut Bottom Caption & CTA Button -->
+              <div class="showcase-bottom-bar">
+                <div style="min-width:0;flex:1">
+                  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#7cc4e8;margin-bottom:2px">
+                    Seguridad • Comodidad • Confianza
+                  </div>
+                  <p style="font-size:clamp(0.9rem,1.8vw,1.08rem);font-weight:700;color:#fff;line-height:1.3">
+                    Movilidad ejecutiva y envíos conectados en tiempo real
+                  </p>
+                </div>
+                <button type="button" class="bikar-btn-gradient btn-comenzar-showcase" data-scroll="#acceso-bikar">
+                  Comenzar ahora →
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2: SCROLLTRIGGER REAL-PHOTO SEQUENCE -->
+    <section id="experiencia-ruta">
+      <div id="sequence-pin-container" class="sequence-pin-wrap">
+        <div class="container-7xl">
+          <div class="sequence-header">
+            <div>
+              <span class="section-eyebrow">Cómo Funciona BIKAR</span>
+              <h2 style="font-size:clamp(1.2rem,2.8vw,2.2rem);font-weight:700;color:#fff;line-height:1.15">
+                Cada etapa de tu experiencia, conectada al instante
+              </h2>
+            </div>
+            <p class="chapter-sub-text" style="font-size:0.85rem;color:#94a3b8;max-width:28rem">
+              Desliza hacia abajo o selecciona cualquier etapa para recorrer cómo BIKAR integra
+              pasajeros, conductores y comercios aliados.
+            </p>
+          </div>
+
+          <div class="sequence-grid">
+            <!-- Left Canvas -->
+            <div class="seq-left bikar-glass canvas-card">
+              <div class="canvas-viewport">
+                <canvas id="bikar-sequence-canvas" width="900" height="520"></canvas>
+
+                <div class="canvas-top-pills">
+                  <div class="glass-pill">
+                    <img
+                      src="https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/icon-192.png"
+                      alt="BIKAR"
+                      decoding="async"
+                      style="width:18px;height:18px;border-radius:4px;background:#fff;padding:2px;object-fit:contain"
+                    />
+                    <span id="seq-stage-badge">Etapa 01 · Pasajeros</span>
+                  </div>
+                  <div class="glass-pill glass-pill-emerald">
+                    <span class="dot-emerald"></span>
+                    <span id="seq-stage-status">Ubicación confirmada</span>
+                  </div>
+                </div>
+
+                <div class="canvas-bottom-caption">
+                  <h3 id="seq-stage-title" style="font-size:clamp(0.95rem,2.1vw,1.45rem);font-weight:700;color:#fff;text-shadow:0 2px 10px rgba(0,0,0,0.7);line-height:1.25">
+                    Solicitud de Viaje al Instante
+                  </h3>
+                  <p id="seq-stage-sub" style="font-size:clamp(0.7rem,1.4vw,0.85rem);color:#e2e8f0;margin-top:3px;max-width:36rem;line-height:1.35">
+                    Pide tu unidad desde cualquier punto de la ciudad con geolocalización precisa y atención inmediata las 24 horas.
+                  </p>
+                </div>
+              </div>
+
+              <div class="scrubber-wrap">
+                <div class="scrubber-labels">
+                  <span>Inicio</span>
+                  <span id="seq-step-indicator" style="color:#7cc4e8;font-weight:600">Paso 01 de 05</span>
+                  <span>Destino seguro</span>
+                </div>
+                <div id="scrubber-bar" class="scrubber-ticks" title="Selecciona cualquier punto del recorrido"></div>
+              </div>
+            </div>
+
+            <!-- Right Synchronized Chapters List -->
+            <div class="seq-right bikar-glass chapters-panel">
+              <div class="chapters-panel-head">
+                <div>
+                  <h3 style="font-size:0.82rem;font-weight:700;color:#fff">Momentos de la Experiencia BIKAR</h3>
+                  <p class="chapter-sub-text" style="font-size:0.75rem;color:#94a3b8">Selecciona una etapa para visualizarla al instante</p>
+                </div>
+                <button type="button" class="bikar-btn-gradient" style="padding:0.4rem 0.75rem;border-radius:10px;font-size:11px;font-weight:700;flex-shrink:0" data-scroll="#acceso-bikar">
+                  Usar la App ↓
+                </button>
+              </div>
+              <ul id="chapters-list-container" class="chapters-list"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: SERVICES & REQUIREMENTS -->
+    <section id="servicios-bikar" class="services-section">
+      <div class="container-7xl">
+        <div style="max-width:48rem">
+          <span class="lists-heading-anim section-eyebrow">Ecosistema Integral BIKAR</span>
+          <h2 class="lists-heading-anim" style="font-size:clamp(1.5rem,3.4vw,2.45rem);font-weight:700;color:#fff;line-height:1.15">
+            Soluciones diseñadas para cada perfil en tu ciudad
+          </h2>
+          <p class="lists-heading-anim" style="margin-top:0.5rem;color:#cbd5e1;font-size:0.85rem;line-height:1.6">
+            Conoce los beneficios exclusivos para pasajeros, conductores profesionales y
+            comercios afiliados, y verifica tus requisitos para registrarte en minutos.
+          </p>
+        </div>
+
+        <div id="filter-tabs-container" class="filter-bar no-scrollbar"></div>
+
+        <div class="services-grid">
+          <div class="srv-left">
+            <ul id="modules-list-container" class="modules-list"></ul>
+          </div>
+
+          <div id="requisitos-bikar" class="srv-right bikar-glass checklist-panel">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:0.65rem">
+              <div style="display:flex;align-items:center;gap:0.65rem">
+                <img
+                  src="https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/icon-192.png"
+                  alt="BIKAR"
+                  decoding="async"
+                  style="width:36px;height:36px;border-radius:10px;background:#fff;padding:4px;object-fit:contain;border:1px solid rgba(124,196,232,0.4)"
+                />
+                <div>
+                  <h3 style="font-size:0.92rem;font-weight:700;color:#fff">Requisitos para tu Registro</h3>
+                  <p style="font-size:11px;color:#94a3b8">Confirma tus documentos antes de crear tu cuenta</p>
+                </div>
+              </div>
+              <span id="readiness-pct-label" style="font-size:0.85rem;font-weight:700;color:#7cc4e8">40%</span>
+            </div>
+
+            <div class="readiness-track">
+              <div id="readiness-bar-fill" class="readiness-fill" style="width:40%"></div>
+            </div>
+
+            <ul id="checklist-container" class="checklist-items"></ul>
+
+            <div style="margin-top:0.9rem;padding-top:0.75rem;border-top:1px solid rgba(255,255,255,0.1)">
+              <button
+                type="button"
+                class="bikar-btn-gradient"
+                style="width:100%;padding:0.75rem 1rem;border-radius:12px;font-size:0.85rem;font-weight:700"
+                data-launch-preset="mobile"
+                data-launch-title="Registro Oficial BIKAR"
+              >
+                Crear Cuenta o Iniciar Sesión ↓
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FINAL PART WITH CENTERED POINTILLISM VIDEO BACKGROUND -->
+  <div class="final-part-wrap">
+    <div class="pointillism-bg-wrap final-video-band">
+      <video
+        src="https://i.imgur.com/GQ6l9vl.mp4"
+        loop
+        muted
+        playsinline
+        preload="none"
+        class="pointillism-video smart-loop-video"
+      ></video>
+      <div class="pointillism-dots-overlay"></div>
+      <div class="pointillism-fade-final"></div>
+    </div>
+
+    <section id="acceso-bikar" class="portal-section" style="position:relative;z-index:10">
+      <div class="container-7xl">
+        <div style="max-width:48rem;margin-bottom:1rem">
+          <span class="portal-reveal section-eyebrow">Plataforma Oficial en Línea</span>
+          <h2 class="portal-reveal" style="font-size:clamp(1.5rem,3.4vw,2.45rem);font-weight:700;color:#fff;line-height:1.15">
+            Inicia Sesión o Regístrate en BIKAR
+          </h2>
+          <p class="portal-reveal" style="margin-top:0.45rem;color:#cbd5e1;font-size:0.85rem;line-height:1.6">
+            Selecciona tu perfil como Pasajero, Conductor o Comercio y gestiona tu cuenta
+            directamente desde aquí con total comodidad y respaldo.
+          </p>
+        </div>
+
+        <div id="portal-workspace" class="portal-reveal portal-workspace">
+          <!-- Top Executive Toolbar -->
+          <div class="portal-toolbar">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem">
+              <div style="display:flex;align-items:center;gap:0.5rem;padding:0.3rem 0.75rem;border-radius:12px;background:#0a121c;border:1px solid rgba(255,255,255,0.1)">
+                <img
+                  src="https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/icon-192.png"
+                  alt="BIKAR"
+                  decoding="async"
+                  style="width:20px;height:20px;border-radius:5px;background:#fff;padding:2px;object-fit:contain"
+                />
+                <span style="font-size:11px;font-weight:700;color:#fff">BIKAR APP</span>
+                <span class="dot-emerald"></span>
+              </div>
+
+              <div id="focused-module-pill" class="hidden" style="padding:0.3rem 0.75rem;border-radius:12px;background:rgba(19,73,137,0.4);border:1px solid rgba(124,196,232,0.4);font-size:11px;font-weight:600;color:#e0f2fe"></div>
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.4rem;max-width:100%">
+              <div class="viewport-segmented no-scrollbar">
+                <button type="button" class="vp-btn active" data-vp="mobile">Vista Móvil</button>
+                <button type="button" class="vp-btn" data-vp="tablet">Vista Tablet</button>
+                <button type="button" class="vp-btn" data-vp="wide">Vista Amplia</button>
+                <button type="button" class="vp-btn" data-vp="immersive">Pantalla Completa</button>
+              </div>
+
+              <button type="button" id="btn-toggle-guide" class="toolbar-btn">Ocultar Pasos</button>
+              <button type="button" id="btn-reset-app" class="toolbar-btn" style="color:#7cc4e8">Inicio de la App</button>
+              <button type="button" id="btn-exit-immersive" class="toolbar-btn hidden" style="background:rgba(255,255,255,0.14);color:#fff;font-weight:700">
+                Cerrar Pantalla Completa
+              </button>
+            </div>
+          </div>
+
+          <!-- Portal Body -->
+          <div id="portal-body" class="portal-body with-guide">
+            <div class="iframe-col">
+              <div id="device-shell" class="device-shell mode-mobile">
+                <div id="phone-status-bar" class="phone-status-bar">
+                  <span>BIKAR</span>
+                  <div class="phone-speaker"></div>
+                  <span style="color:#34d399">● Seguro</span>
+                </div>
+
+                <div id="iframe-loader" class="iframe-loader">
+                  <img
+                    src="https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/icon-192.png"
+                    alt="BIKAR"
+                    decoding="async"
+                    style="width:52px;height:52px;border-radius:14px;background:#fff;padding:7px;object-fit:contain"
+                  />
+                  <div style="font-size:0.95rem;font-weight:700;color:#fff">Iniciando BIKAR...</div>
+                  <p style="font-size:0.75rem;color:#94a3b8;max-width:17rem">
+                    Preparando tus opciones de Pasajero, Conductor y Comercio.
+                  </p>
+                </div>
+
+                <iframe
+                  id="bikar-embedded-iframe"
+                  data-src="https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/"
+                  title="BIKAR Aplicación Oficial"
+                  allow="camera *; microphone *; geolocation *; clipboard-read; clipboard-write; autoplay *; fullscreen *; accelerometer; gyroscope"
+                ></iframe>
+              </div>
+            </div>
+
+            <!-- Onboarding Steps -->
+            <aside id="guide-sidebar" class="guide-col guide-panel">
+              <div style="display:flex;align-items:center;gap:0.65rem;padding-bottom:0.65rem;margin-bottom:0.75rem;border-bottom:1px solid rgba(255,255,255,0.1)">
+                <img
+                  src="https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/icon-192.png"
+                  alt="BIKAR"
+                  decoding="async"
+                  style="width:34px;height:34px;border-radius:10px;background:#fff;padding:3px;object-fit:contain"
+                />
+                <div>
+                  <h3 style="font-size:0.9rem;font-weight:700;color:#fff">Tu cuenta activa en 4 sencillos pasos</h3>
+                  <p style="font-size:11px;color:#94a3b8">Completa tu ingreso directamente en el panel interactivo</p>
+                </div>
+              </div>
+
+              <ol class="guide-steps-grid">
+                <li class="guide-step">
+                  <div class="photo-badge">
+                    <img src="https://images.pexels.com/photos/7405/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=420" alt="Elige tu Perfil" loading="lazy" decoding="async" />
+                  </div>
+                  <div style="min-width:0;flex:1">
+                    <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#7cc4e8">Paso 01</span>
+                    <h4 style="font-size:0.8rem;font-weight:700;color:#fff;margin-top:1px">Elige tu Perfil de Ingreso</h4>
+                    <p style="font-size:11px;color:#94a3b8;margin-top:1px">Selecciona Pasajero, Conductor o Comercio según el servicio que desees utilizar hoy.</p>
+                  </div>
+                </li>
+                <li class="guide-step">
+                  <div class="photo-badge">
+                    <img src="https://images.pexels.com/photos/16702626/pexels-photo-16702626.jpeg?auto=compress&cs=tinysrgb&w=480" alt="Inicia Sesión o Crea tu Cuenta" loading="lazy" decoding="async" />
+                  </div>
+                  <div style="min-width:0;flex:1">
+                    <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#7cc4e8">Paso 02</span>
+                    <h4 style="font-size:0.8rem;font-weight:700;color:#fff;margin-top:1px">Inicia Sesión o Crea tu Cuenta</h4>
+                    <p style="font-size:11px;color:#94a3b8;margin-top:1px">Ingresa con tu número de documento (DNI o CE) o completa tus datos básicos de contacto.</p>
+                  </div>
+                </li>
+                <li class="guide-step">
+                  <div class="photo-badge">
+                    <img src="https://images.pexels.com/photos/3771134/pexels-photo-3771134.jpeg?auto=compress&cs=tinysrgb&w=640" alt="Agrega tu Selfie o Logo" loading="lazy" decoding="async" />
+                  </div>
+                  <div style="min-width:0;flex:1">
+                    <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#7cc4e8">Paso 03</span>
+                    <h4 style="font-size:0.8rem;font-weight:700;color:#fff;margin-top:1px">Agrega tu Selfie o Logo Comercial</h4>
+                    <p style="font-size:11px;color:#94a3b8;margin-top:1px">Toma una fotografía de validación o sube el emblema de tu establecimiento.</p>
+                  </div>
+                </li>
+                <li class="guide-step">
+                  <div class="photo-badge">
+                    <img src="https://images.pexels.com/photos/34781751/pexels-photo-34781751.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Acepta las Políticas y Comienza" loading="lazy" decoding="async" />
+                  </div>
+                  <div style="min-width:0;flex:1">
+                    <span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#7cc4e8">Paso 04</span>
+                    <h4 style="font-size:0.8rem;font-weight:700;color:#fff;margin-top:1px">Acepta las Políticas y Comienza</h4>
+                    <p style="font-size:11px;color:#94a3b8;margin-top:1px">Confirma nuestra Política de Protección de Datos para activar tu cuenta de inmediato.</p>
+                  </div>
+                </li>
+              </ol>
+
+              <div style="display:flex;gap:0.5rem;margin-top:0.85rem">
+                <button type="button" class="toolbar-btn" style="flex:1;padding:0.65rem;background:rgba(19,73,137,0.45);border-color:rgba(124,196,232,0.35);color:#fff;font-weight:700" data-vp="wide">
+                  Ampliar al Ancho Total
+                </button>
+                <button type="button" class="bikar-btn-gradient" style="flex:1;padding:0.65rem;border-radius:10px;font-size:11px;font-weight:700" data-vp="immersive">
+                  Abrir en Pantalla Completa
+                </button>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SEMI-TRANSPARENT CORPORATE FOOTER -->
+  <footer class="site-footer">
+    <div class="container-7xl footer-inner">
+        <div style="display:flex;align-items:center;gap:0.75rem">
+          <div class="logo-wrap">
+            <img
+              src="https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/icon-192.png"
+              alt="BIKAR"
+              decoding="async"
+              class="logo-img"
+            />
+          </div>
+          <div>
+            <div style="font-size:0.85rem;font-weight:700;color:#fff">BIKAR</div>
+            <p style="font-size:11px;color:#cbd5e1">
+              © <span id="footer-year"></span> BIKAR. Todos los derechos reservados · Seguridad, Comodidad y Confianza.
+            </p>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.5rem">
+          <button type="button" class="toolbar-btn" style="background:rgba(255,255,255,0.06)" data-scroll="#inicio">Inicio</button>
+          <button type="button" class="toolbar-btn" style="background:rgba(255,255,255,0.06)" data-scroll="#experiencia-ruta">Cómo Funciona</button>
+          <button type="button" class="toolbar-btn" style="background:rgba(255,255,255,0.06)" data-scroll="#servicios-bikar">Servicios</button>
+          <button type="button" class="bikar-btn-gradient" style="padding:0.45rem 0.9rem;border-radius:10px;font-size:0.75rem;font-weight:700" data-scroll="#acceso-bikar">
+            Acceder a BIKAR
+          </button>
+        </div>
+      </div>
+  </footer>
+
+  <!-- GSAP + ScrollTrigger + ScrollToPlugin -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+  <script>
+    (function () {
+      'use strict';
+
+      var BIKAR_EMBED_URL = 'https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/';
+      var TOTAL_FRAMES = 180;
+      var CANVAS_W = 900;
+      var CANVAS_H = 520;
+
+      var FRAME_CHAPTERS = [
+        {
+          id: 'etapa-solicitud',
+          stepNumber: '01',
+          title: 'Solicitud de Viaje al Instante',
+          subtitle: 'Pide tu unidad desde cualquier punto de la ciudad con geolocalización precisa y atención inmediata las 24 horas.',
+          badgeText: 'Pasajeros',
+          statusLabel: 'Ubicación confirmada',
+          photoUrl: 'https://i.imgur.com/j4WWIAW.jpeg',
+          startFrame: 1,
+          endFrame: 36,
+          targetProgress: 0.06
+        },
+        {
+          id: 'etapa-unidad',
+          stepNumber: '02',
+          title: 'Flota Moderna y Conductores Verificados',
+          subtitle: 'Tu conductor asignado recibe la alerta al instante con ruta optimizada, documentación al día y estándares ejecutivos.',
+          badgeText: 'Conductores',
+          statusLabel: 'Unidad en camino',
+          photoUrl: 'https://i.imgur.com/xbf72Hg.jpeg',
+          startFrame: 37,
+          endFrame: 72,
+          targetProgress: 0.28
+        },
+        {
+          id: 'etapa-comercios',
+          stepNumber: '03',
+          title: 'Red de Comercios y Entregas Aliadas',
+          subtitle: 'Restaurantes, tiendas y negocios locales gestionan sus pedidos y conectan con unidades cercanas sin demoras.',
+          badgeText: 'Comercios',
+          statusLabel: 'Aliado activo',
+          photoUrl: 'https://i.imgur.com/c621aRJ.jpeg',
+          startFrame: 73,
+          endFrame: 108,
+          targetProgress: 0.5
+        },
+        {
+          id: 'etapa-seguridad',
+          stepNumber: '04',
+          title: 'Identidad Validada y Datos Protegidos',
+          subtitle: 'Cada cuenta cuenta con validación fotográfica y resguardo estricto bajo nuestra Política de Protección de Datos Personales.',
+          badgeText: 'Seguridad BIKAR',
+          statusLabel: 'Perfil verificado',
+          photoUrl: 'https://images.pexels.com/photos/3771134/pexels-photo-3771134.jpeg?auto=compress&cs=tinysrgb&w=640',
+          startFrame: 109,
+          endFrame: 144,
+          targetProgress: 0.72
+        },
+        {
+          id: 'etapa-destino',
+          stepNumber: '05',
+          title: 'Experiencia Ejecutiva de Principio a Fin',
+          subtitle: 'Llega a tu destino con total tranquilidad respaldado por nuestros tres pilares: Seguridad, Comodidad y Confianza.',
+          badgeText: 'Experiencia Total',
+          statusLabel: 'Viaje garantizado',
+          photoUrl: 'https://images.pexels.com/photos/34781751/pexels-photo-34781751.jpeg?auto=compress&cs=tinysrgb&w=800',
+          startFrame: 145,
+          endFrame: 180,
+          targetProgress: 0.94
+        }
+      ];
+
+      var FILTER_TABS = [
+        { id: 'todos', label: 'Todos los Servicios' },
+        { id: 'pasajero', label: 'Pasajeros' },
+        { id: 'conductor', label: 'Conductores' },
+        { id: 'comercio', label: 'Comercios Aliados' },
+        { id: 'seguridad', label: 'Seguridad y Privacidad' }
+      ];
+
+      var BIKAR_MODULES = [
+        {
+          id: 'srv-pasajero-urbano',
+          category: 'pasajero',
+          categoryLabel: 'Pasajeros',
+          photoUrl: 'https://images.pexels.com/photos/4606332/pexels-photo-4606332.jpeg?auto=compress&cs=tinysrgb&w=500',
+          photoAlt: 'Pasajera viajando cómodamente en asiento trasero con su teléfono',
+          title: 'Viajes Urbanos Cómodos y Puntuales',
+          description: 'Trasládate por la ciudad en vehículos seleccionados, con atención cordial y seguimiento permanente en cada trayecto.',
+          highlights: ['Acceso con DNI o CE', 'Atención inmediata', 'Unidades confortables'],
+          recommendedViewport: 'mobile'
+        },
+        {
+          id: 'srv-conductor-ingresos',
+          category: 'conductor',
+          categoryLabel: 'Conductores',
+          photoUrl: 'https://images.pexels.com/photos/16702626/pexels-photo-16702626.jpeg?auto=compress&cs=tinysrgb&w=480',
+          photoAlt: 'Conductor profesional sonriendo al volante de su vehículo',
+          title: 'Conduce con BIKAR y Recibe Solicitudes en Vivo',
+          description: 'Únete a nuestra comunidad de conductores profesionales, administra tu disponibilidad y conecta con miles de pasajeros.',
+          highlights: ['Solicitudes en tiempo real', 'Horarios flexibles', 'Soporte dedicado'],
+          recommendedViewport: 'mobile'
+        },
+        {
+          id: 'srv-conductor-documentos',
+          category: 'conductor',
+          categoryLabel: 'Flota Verificada',
+          photoUrl: 'https://images.pexels.com/photos/8943323/pexels-photo-8943323.jpeg?auto=compress&cs=tinysrgb&w=500',
+          photoAlt: 'Revisión y registro de documentación vehicular',
+          title: 'Validación Ágil de Documentación Vehicular',
+          description: 'Registra los documentos de tu unidad directamente desde tu perfil de conductor para operar con respaldo y transparencia.',
+          highlights: ['Revisión digital rápida', 'Control de vigencia', 'Sello de confianza'],
+          recommendedViewport: 'tablet'
+        },
+        {
+          id: 'srv-comercio-aliado',
+          category: 'comercio',
+          categoryLabel: 'Comercios Aliados',
+          photoUrl: 'https://images.pexels.com/photos/6612691/pexels-photo-6612691.jpeg?auto=compress&cs=tinysrgb&w=500',
+          photoAlt: 'Encargada de comercio gestionando pedidos desde tablet y teléfono',
+          title: 'Impulsa tu Negocio como Comercio Aliado',
+          description: 'Registra tu restaurante, cafetería o tienda con tu marca oficial y coordina traslados y entregas con nuestra red.',
+          highlights: ['Perfil con logo propio', 'Categorización comercial', 'Contacto vía WhatsApp'],
+          recommendedViewport: 'tablet'
+        },
+        {
+          id: 'srv-seguridad-biometria',
+          category: 'seguridad',
+          categoryLabel: 'Confianza y Seguridad',
+          photoUrl: 'https://images.pexels.com/photos/3771134/pexels-photo-3771134.jpeg?auto=compress&cs=tinysrgb&w=640',
+          photoAlt: 'Usuaria realizando verificación con fotografía desde su teléfono móvil',
+          title: 'Verificación de Identidad con Fotografía Real',
+          description: 'Protegemos a toda la comunidad validando el rostro de usuarios y conductores, así como la identidad visual de cada comercio.',
+          highlights: ['Captura desde tu cámara', 'Validación inmediata', 'Comunidad segura'],
+          recommendedViewport: 'mobile'
+        },
+        {
+          id: 'srv-seguridad-privacidad',
+          category: 'seguridad',
+          categoryLabel: 'Protección Legal',
+          photoUrl: 'https://images.pexels.com/photos/11341268/pexels-photo-11341268.jpeg?auto=compress&cs=tinysrgb&w=480',
+          photoAlt: 'Uso seguro de aplicación móvil en entorno urbano nocturno',
+          title: 'Resguardo Total de tus Datos Personales',
+          description: 'Tu información personal y credenciales están protegidas bajo estrictos protocolos de privacidad y transparencia legal.',
+          highlights: ['Políticas claras y accesibles', 'Acceso cifrado', 'Privacidad garantizada'],
+          recommendedViewport: 'wide'
+        }
+      ];
+
+      var READINESS_CHECKLIST = [
+        {
+          id: 'chk-doc',
+          label: 'Documento de Identidad vigente (DNI o CE)',
+          detail: 'Indispensable para crear tu cuenta única e iniciar sesión de forma segura.',
+          roleBadge: 'Todos los perfiles',
+          photoUrl: 'https://images.pexels.com/photos/11341268/pexels-photo-11341268.jpeg?auto=compress&cs=tinysrgb&w=480'
+        },
+        {
+          id: 'chk-contact',
+          label: 'Teléfono con WhatsApp y Correo Electrónico',
+          detail: 'Para mantener comunicación directa sobre tus viajes, pedidos y avisos de cuenta.',
+          roleBadge: 'Todos los perfiles',
+          photoUrl: 'https://images.pexels.com/photos/7405/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=420'
+        },
+        {
+          id: 'chk-camera',
+          label: 'Fotografía tipo Selfie o Logotipo de tu Negocio',
+          detail: 'Tómala al instante desde tu cámara o súbela desde tu galería al registrarte.',
+          roleBadge: 'Identidad verificada',
+          photoUrl: 'https://images.pexels.com/photos/3771134/pexels-photo-3771134.jpeg?auto=compress&cs=tinysrgb&w=640'
+        },
+        {
+          id: 'chk-vehicle',
+          label: 'Documentos del Vehículo en regla',
+          detail: 'Requerido únicamente si deseas afiliarte y generar ingresos como Conductor.',
+          roleBadge: 'Conductores',
+          photoUrl: 'https://images.pexels.com/photos/29217852/pexels-photo-29217852.jpeg?auto=compress&cs=tinysrgb&w=420'
+        },
+        {
+          id: 'chk-policy',
+          label: 'Conformidad con la Política de Protección de Datos',
+          detail: 'Revisa y acepta nuestras condiciones de privacidad antes de finalizar tu alta.',
+          roleBadge: 'Seguridad BIKAR',
+          photoUrl: 'https://images.pexels.com/photos/16551633/pexels-photo-16551633.jpeg?auto=compress&cs=tinysrgb&w=600'
+        }
+      ];
+
+      var yearEl = document.getElementById('footer-year');
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      var hasGsap = typeof window.gsap !== 'undefined';
+      if (hasGsap && window.ScrollTrigger && window.ScrollToPlugin) {
+        gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+      }
+
+      // Smart Viewport Video Controller (pauses off-screen videos for zero lag)
+      if ('IntersectionObserver' in window) {
+        var vidObserver = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            var v = entry.target;
+            if (entry.isIntersecting) {
+              var p = v.play();
+              if (p && typeof p.catch === 'function') p.catch(function () {});
+            } else {
+              v.pause();
+            }
+          });
+        }, { rootMargin: '220px 0px' });
+
+        document.querySelectorAll('.smart-loop-video').forEach(function (v) {
+          vidObserver.observe(v);
+        });
+      }
+
+      // Deferred Iframe Mount Helper
+      var iframeEl = document.getElementById('bikar-embedded-iframe');
+      var iframeLoader = document.getElementById('iframe-loader');
+      var iframeMounted = false;
+
+      function ensureIframeMounted() {
+        if (iframeMounted || !iframeEl) return;
+        iframeMounted = true;
+        var dataSrc = iframeEl.getAttribute('data-src') || BIKAR_EMBED_URL;
+        iframeEl.src = dataSrc;
+      }
+
+      if (iframeEl) {
+        iframeEl.addEventListener('load', function () {
+          if (iframeLoader && iframeMounted) iframeLoader.classList.add('hidden');
+        });
+      }
+
+      var portalSec = document.getElementById('acceso-bikar');
+      if (portalSec && 'IntersectionObserver' in window) {
+        var iframeObs = new IntersectionObserver(function (entries) {
+          if (entries[0] && entries[0].isIntersecting) {
+            ensureIframeMounted();
+            iframeObs.disconnect();
+          }
+        }, { rootMargin: '750px 0px' });
+        iframeObs.observe(portalSec);
+      } else {
+        ensureIframeMounted();
+      }
+
+      function scrollToTarget(selector) {
+        if (selector === '#acceso-bikar') ensureIframeMounted();
+        var el = document.querySelector(selector);
+        if (!el) return;
+        if (hasGsap && window.ScrollToPlugin) {
+          gsap.to(window, {
+            scrollTo: { y: selector, offsetY: 60 },
+            duration: 0.72,
+            ease: 'power2.inOut'
+          });
+        } else {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+
+      document.querySelectorAll('[data-scroll]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var target = btn.getAttribute('data-scroll');
+          if (target) scrollToTarget(target);
+        });
+      });
+
+      // =====================================================================
+      // 1. PRE-BAKED GPU TEXTURE 180-FRAME SEQUENCE ENGINE
+      // =====================================================================
+      var canvas = document.getElementById('bikar-sequence-canvas');
+      var ctx = canvas ? canvas.getContext('2d', { alpha: false }) : null;
+      var bakedTextures = [null, null, null, null, null];
+      var lastDrawnFrame = -1;
+      var currentFrameIdx = 0;
+      var lastActiveChIdx = -1;
+      var lastActiveTickIdx = -1;
+      var sequenceST = null;
+
+      var vigCanvas = document.createElement('canvas');
+      vigCanvas.width = CANVAS_W;
+      vigCanvas.height = CANVAS_H;
+      var vctx = vigCanvas.getContext('2d');
+      if (vctx) {
+        var bGrad = vctx.createLinearGradient(0, CANVAS_H * 0.38, 0, CANVAS_H);
+        bGrad.addColorStop(0, 'rgba(9, 13, 19, 0)');
+        bGrad.addColorStop(0.65, 'rgba(9, 13, 19, 0.52)');
+        bGrad.addColorStop(1, 'rgba(9, 13, 19, 0.92)');
+        vctx.fillStyle = bGrad;
+        vctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+
+        var tGrad = vctx.createLinearGradient(0, 0, 0, CANVAS_H * 0.28);
+        tGrad.addColorStop(0, 'rgba(9, 13, 19, 0.55)');
+        tGrad.addColorStop(1, 'rgba(9, 13, 19, 0)');
+        vctx.fillStyle = tGrad;
+        vctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+      }
+
+      function bakeImageToCanvas(img) {
+        var off = document.createElement('canvas');
+        off.width = CANVAS_W;
+        off.height = CANVAS_H;
+        var octx = off.getContext('2d', { alpha: false });
+        if (!octx || !img.naturalWidth) return off;
+        var imgAspect = img.naturalWidth / img.naturalHeight;
+        var cAspect = CANVAS_W / CANVAS_H;
+        var dw = CANVAS_W, dh = CANVAS_H;
+        if (imgAspect > cAspect) {
+          dh = CANVAS_H;
+          dw = dh * imgAspect;
+        } else {
+          dw = CANVAS_W;
+          dh = dw / imgAspect;
+        }
+        octx.fillStyle = '#090D14';
+        octx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+        octx.drawImage(img, (CANVAS_W - dw) / 2, (CANVAS_H - dh) / 2, dw, dh);
+        return off;
+      }
+
+      function drawBakedMotion(c, tex, scale, panX, panY, alpha) {
+        if (!tex) return;
+        c.save();
+        c.globalAlpha = alpha;
+        var dw = CANVAS_W * scale;
+        var dh = CANVAS_H * scale;
+        var ox = (CANVAS_W - dw) / 2 + panX * ((dw - CANVAS_W) / 2);
+        var oy = (CANVAS_H - dh) / 2 + panY * ((dh - CANVAS_H) / 2);
+        c.drawImage(tex, ox, oy, dw, dh);
+        c.restore();
+      }
+
+      function renderSequenceFrame(frameIdx, force) {
+        if (!ctx) return;
+        var clamped = Math.min(TOTAL_FRAMES - 1, Math.max(0, frameIdx));
+        if (!force && clamped === lastDrawnFrame) return;
+        lastDrawnFrame = clamped;
+
+        var totalChapters = FRAME_CHAPTERS.length;
+        var framesPerChapter = TOTAL_FRAMES / totalChapters;
+        var exactPos = clamped / framesPerChapter;
+        var primaryIdx = Math.min(totalChapters - 1, Math.floor(exactPos));
+        var localProg = exactPos - primaryIdx;
+
+        ctx.fillStyle = '#090D14';
+        ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
+
+        var primaryTex = bakedTextures[primaryIdx];
+        var nextTex = bakedTextures[Math.min(totalChapters - 1, primaryIdx + 1)];
+
+        var primaryScale = 1.04 + localProg * 0.1;
+        var dir = primaryIdx % 2 === 0 ? 1 : -1;
+        var primaryPanX = dir * (-0.35 + localProg * 0.7);
+        var primaryPanY = -0.15 + localProg * 0.3;
+
+        if (primaryTex) {
+          drawBakedMotion(ctx, primaryTex, primaryScale, primaryPanX, primaryPanY, 1);
+        }
+
+        var threshold = 0.78;
+        if (primaryIdx < totalChapters - 1 && localProg > threshold && nextTex) {
+          var blend = (localProg - threshold) / (1 - threshold);
+          var eased = blend * blend * (3 - 2 * blend);
+          var nextDir = (primaryIdx + 1) % 2 === 0 ? 1 : -1;
+          drawBakedMotion(ctx, nextTex, 1.04 + eased * 0.02, nextDir * -0.35, -0.15, eased);
+        }
+
+        ctx.drawImage(vigCanvas, 0, 0);
+
+        var overallRatio = clamped / (TOTAL_FRAMES - 1);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.14)';
+        ctx.fillRect(0, CANVAS_H - 4, CANVAS_W, 4);
+        ctx.fillStyle = '#4785A7';
+        ctx.fillRect(0, CANVAS_H - 4, Math.max(8, CANVAS_W * overallRatio), 4);
+      }
+
+      var scrubberBar = document.getElementById('scrubber-bar');
+      var scrubberTickEls = [];
+      if (scrubberBar) {
+        for (var t = 0; t < 40; t++) {
+          var tick = document.createElement('div');
+          tick.className = 'scrubber-tick' + (t === 0 ? ' current' : '');
+          scrubberBar.appendChild(tick);
+          scrubberTickEls.push(tick);
+        }
+        scrubberBar.addEventListener('click', function (e) {
+          var rect = scrubberBar.getBoundingClientRect();
+          var ratio = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+          jumpToSequenceProgress(ratio);
+        });
+      }
+
+      var chaptersListEl = document.getElementById('chapters-list-container');
+      var chapterButtons = [];
+      if (chaptersListEl) {
+        FRAME_CHAPTERS.forEach(function (ch, idx) {
+          var li = document.createElement('li');
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'chapter-btn' + (idx === 0 ? ' active' : '');
+          btn.innerHTML =
+            '<div class="photo-badge' + (idx === 0 ? ' active' : '') + '">' +
+              '<img src="' + ch.photoUrl + '" alt="' + ch.title + '" loading="lazy" decoding="async" referrerpolicy="no-referrer" />' +
+            '</div>' +
+            '<div style="min-width:0;flex:1">' +
+              '<div style="display:flex;align-items:center;justify-content:space-between;gap:6px">' +
+                '<span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7cc4e8">' +
+                  ch.stepNumber + ' · ' + ch.badgeText +
+                '</span>' +
+                '<span class="chapter-active-pill" style="display:' + (idx === 0 ? 'inline-flex' : 'none') + ';padding:1px 6px;border-radius:9999px;font-size:9px;font-weight:600;background:rgba(16,185,129,0.2);color:#6ee7b7;border:1px solid rgba(52,211,153,0.35)">Activo</span>' +
+              '</div>' +
+              '<h4 style="font-size:0.8rem;font-weight:700;color:#fff;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + ch.title + '</h4>' +
+              '<p class="chapter-sub-text" style="font-size:0.72rem;color:#94a3b8;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' + ch.subtitle + '</p>' +
+            '</div>';
+          btn.addEventListener('click', function () {
+            jumpToSequenceProgress(ch.targetProgress);
+          });
+          li.appendChild(btn);
+          chaptersListEl.appendChild(li);
+          chapterButtons.push({ btn: btn, chapter: ch });
+        });
+      }
+
+      var badgeEl = document.getElementById('seq-stage-badge');
+      var statusEl = document.getElementById('seq-stage-status');
+      var titleEl = document.getElementById('seq-stage-title');
+      var subEl = document.getElementById('seq-stage-sub');
+      var stepIndEl = document.getElementById('seq-step-indicator');
+
+      function updateSequenceUI(frameIdx, progress) {
+        var displayNum = frameIdx + 1;
+        var chIdx = Math.min(FRAME_CHAPTERS.length - 1, Math.max(0, Math.floor((displayNum - 1) / 36)));
+        var tickIdx = Math.min(39, Math.max(0, Math.round(progress * 39)));
+
+        if (chIdx !== lastActiveChIdx) {
+          lastActiveChIdx = chIdx;
+          var activeCh = FRAME_CHAPTERS[chIdx];
+          if (badgeEl) badgeEl.textContent = 'Etapa ' + activeCh.stepNumber + ' · ' + activeCh.badgeText;
+          if (statusEl) statusEl.textContent = activeCh.statusLabel;
+          if (titleEl) titleEl.textContent = activeCh.title;
+          if (subEl) subEl.textContent = activeCh.subtitle;
+          if (stepIndEl) stepIndEl.textContent = 'Paso ' + activeCh.stepNumber + ' de 05';
+
+          chapterButtons.forEach(function (item, idx) {
+            var isAct = idx === chIdx;
+            item.btn.className = 'chapter-btn' + (isAct ? ' active' : '');
+            var pb = item.btn.querySelector('.photo-badge');
+            if (pb) pb.className = 'photo-badge' + (isAct ? ' active' : '');
+            var pill = item.btn.querySelector('.chapter-active-pill');
+            if (pill) pill.style.display = isAct ? 'inline-flex' : 'none';
+          });
+        }
+
+        if (tickIdx !== lastActiveTickIdx) {
+          lastActiveTickIdx = tickIdx;
+          scrubberTickEls.forEach(function (el, idx) {
+            el.className = 'scrubber-tick' + (idx === tickIdx ? ' current' : idx < tickIdx ? ' passed' : '');
+          });
+        }
+      }
+
+      function jumpToSequenceProgress(targetProg) {
+        if (sequenceST && hasGsap && window.ScrollToPlugin) {
+          var targetY = sequenceST.start + targetProg * (sequenceST.end - sequenceST.start);
+          gsap.to(window, {
+            scrollTo: { y: targetY, autoKill: false },
+            duration: 0.65,
+            ease: 'power2.out'
+          });
+        } else {
+          var f = Math.round(targetProg * (TOTAL_FRAMES - 1));
+          currentFrameIdx = f;
+          renderSequenceFrame(f, true);
+          updateSequenceUI(f, targetProg);
+        }
+      }
+
+      FRAME_CHAPTERS.forEach(function (ch, idx) {
+        var img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.referrerPolicy = 'no-referrer';
+        img.decoding = 'async';
+        img.src = ch.photoUrl;
+        img.onload = function () {
+          bakedTextures[idx] = bakeImageToCanvas(img);
+          renderSequenceFrame(currentFrameIdx, true);
+        };
+      });
+      renderSequenceFrame(0, true);
+      updateSequenceUI(0, 0);
+
+      // =====================================================================
+      // 2. INTERACTIVE SERVICES FILTER & READINESS CHECKLIST
+      // =====================================================================
+      var activeFilter = 'todos';
+      var filterTabsContainer = document.getElementById('filter-tabs-container');
+      var modulesListContainer = document.getElementById('modules-list-container');
+
+      function renderFilterTabs() {
+        if (!filterTabsContainer) return;
+        filterTabsContainer.innerHTML = '';
+        FILTER_TABS.forEach(function (tab) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'filter-tab' + (activeFilter === tab.id ? ' active' : '');
+          btn.textContent = tab.label;
+          btn.addEventListener('click', function () {
+            activeFilter = tab.id;
+            renderFilterTabs();
+            renderModulesList();
+          });
+          filterTabsContainer.appendChild(btn);
+        });
+      }
+
+      function renderModulesList() {
+        if (!modulesListContainer) return;
+        modulesListContainer.innerHTML = '';
+        var filtered = activeFilter === 'todos'
+          ? BIKAR_MODULES
+          : BIKAR_MODULES.filter(function (m) { return m.category === activeFilter; });
+
+        filtered.forEach(function (mod) {
+          var li = document.createElement('li');
+          li.className = 'bikar-module-row bikar-glass module-card';
+          var chipsHtml = mod.highlights.map(function (h) {
+            return '<span class="highlight-chip"><span style="width:5px;height:5px;border-radius:9999px;background:#4785a7"></span>' + h + '</span>';
+          }).join('');
+
+          li.innerHTML =
+            '<div class="module-photo-wrap">' +
+              '<img src="' + mod.photoUrl + '" alt="' + mod.photoAlt + '" loading="lazy" decoding="async" />' +
+              '<span class="module-cat-pill">' + mod.categoryLabel + '</span>' +
+            '</div>' +
+            '<div class="module-body">' +
+              '<div>' +
+                '<h3 style="font-size:clamp(0.9rem,1.8vw,1.125rem);font-weight:700;color:#fff;line-height:1.3">' + mod.title + '</h3>' +
+                '<p style="font-size:0.78rem;color:#cbd5e1;margin-top:4px;line-height:1.45">' + mod.description + '</p>' +
+                '<div class="highlights-row">' + chipsHtml + '</div>' +
+              '</div>' +
+              '<div class="module-footer">' +
+                '<button type="button" class="btn-module-go">Ingresar ahora →</button>' +
+              '</div>' +
+            '</div>';
+
+          var goBtn = li.querySelector('.btn-module-go');
+          if (goBtn) {
+            goBtn.addEventListener('click', function () {
+              launchInEmbeddedPortal(mod.recommendedViewport, mod.title);
+            });
+          }
+          modulesListContainer.appendChild(li);
+        });
+
+        if (hasGsap) {
+          gsap.fromTo(
+            '.bikar-module-row',
+            { y: 12, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.32, stagger: 0.04, ease: 'power2.out', force3D: true, clearProps: 'transform' }
+          );
+        }
+      }
+
+      renderFilterTabs();
+      renderModulesList();
+
+      var checkedIds = ['chk-doc', 'chk-policy'];
+      var checklistContainer = document.getElementById('checklist-container');
+      var readinessPctLabel = document.getElementById('readiness-pct-label');
+      var readinessBarFill = document.getElementById('readiness-bar-fill');
+
+      function renderChecklist() {
+        if (!checklistContainer) return;
+        checklistContainer.innerHTML = '';
+        var pct = Math.round((checkedIds.length / READINESS_CHECKLIST.length) * 100);
+        if (readinessPctLabel) readinessPctLabel.textContent = pct + '%';
+        if (readinessBarFill) readinessBarFill.style.width = pct + '%';
+
+        READINESS_CHECKLIST.forEach(function (item) {
+          var isChecked = checkedIds.indexOf(item.id) !== -1;
+          var li = document.createElement('li');
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'check-item-btn' + (isChecked ? ' checked' : '');
+          btn.innerHTML =
+            '<div class="photo-badge' + (isChecked ? ' active' : '') + '">' +
+              '<img src="' + item.photoUrl + '" alt="' + item.label + '" loading="lazy" decoding="async" />' +
+            '</div>' +
+            '<div style="min-width:0;flex:1">' +
+              '<div style="display:flex;align-items:center;justify-content:space-between;gap:6px">' +
+                '<span style="font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#7cc4e8">' + item.roleBadge + '</span>' +
+                '<span class="' + (isChecked ? 'status-pill-ready' : 'status-pill-pending') + '">' + (isChecked ? 'Listo ✓' : 'Pendiente') + '</span>' +
+              '</div>' +
+              '<h4 style="font-size:0.8rem;font-weight:700;color:#fff;margin-top:2px">' + item.label + '</h4>' +
+              '<p style="font-size:11px;color:#94a3b8;margin-top:2px">' + item.detail + '</p>' +
+            '</div>';
+
+          btn.addEventListener('click', function () {
+            var idx = checkedIds.indexOf(item.id);
+            if (idx !== -1) checkedIds.splice(idx, 1);
+            else checkedIds.push(item.id);
+            renderChecklist();
+          });
+          li.appendChild(btn);
+          checklistContainer.appendChild(li);
+        });
+      }
+
+      renderChecklist();
+
+      // =====================================================================
+      // 3. EMBEDDED BIKAR PORTAL CONTROLLER
+      // =====================================================================
+      var currentViewport = 'mobile';
+      var showGuide = true;
+
+      var portalWorkspace = document.getElementById('portal-workspace');
+      var portalBody = document.getElementById('portal-body');
+      var deviceShell = document.getElementById('device-shell');
+      var phoneStatusBar = document.getElementById('phone-status-bar');
+      var guideSidebar = document.getElementById('guide-sidebar');
+      var btnToggleGuide = document.getElementById('btn-toggle-guide');
+      var btnExitImmersive = document.getElementById('btn-exit-immersive');
+      var btnResetApp = document.getElementById('btn-reset-app');
+      var focusedPill = document.getElementById('focused-module-pill');
+
+      function applyViewportMode(mode) {
+        ensureIframeMounted();
+        currentViewport = mode;
+        var isImmersive = mode === 'immersive';
+
+        if (portalWorkspace) {
+          if (isImmersive) portalWorkspace.classList.add('immersive');
+          else portalWorkspace.classList.remove('immersive');
+        }
+
+        document.body.style.overflow = isImmersive ? 'hidden' : '';
+
+        if (deviceShell) {
+          deviceShell.className = 'device-shell mode-' + mode;
+        }
+
+        if (phoneStatusBar) {
+          if (mode === 'mobile') phoneStatusBar.classList.remove('hidden');
+          else phoneStatusBar.classList.add('hidden');
+        }
+
+        var displaySideGuide = mode === 'mobile' && showGuide && !isImmersive;
+        if (guideSidebar) {
+          if (displaySideGuide) guideSidebar.classList.remove('hidden');
+          else guideSidebar.classList.add('hidden');
+        }
+        if (portalBody) {
+          portalBody.className = 'portal-body' + (displaySideGuide ? ' with-guide' : '');
+        }
+        if (btnToggleGuide) {
+          if (mode === 'mobile' && !isImmersive) {
+            btnToggleGuide.classList.remove('hidden');
+            btnToggleGuide.textContent = showGuide ? 'Ocultar Pasos' : 'Ver Pasos';
+          } else {
+            btnToggleGuide.classList.add('hidden');
+          }
+        }
+        if (btnExitImmersive) {
+          if (isImmersive) btnExitImmersive.classList.remove('hidden');
+          else btnExitImmersive.classList.add('hidden');
+        }
+
+        document.querySelectorAll('.vp-btn').forEach(function (b) {
+          if (b.getAttribute('data-vp') === mode) b.classList.add('active');
+          else b.classList.remove('active');
+        });
+      }
+
+      document.querySelectorAll('[data-vp]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var vp = btn.getAttribute('data-vp');
+          if (vp) applyViewportMode(vp);
+        });
+      });
+
+      if (btnToggleGuide) {
+        btnToggleGuide.addEventListener('click', function () {
+          showGuide = !showGuide;
+          applyViewportMode(currentViewport);
+        });
+      }
+
+      if (btnExitImmersive) {
+        btnExitImmersive.addEventListener('click', function () {
+          applyViewportMode('wide');
+        });
+      }
+
+      window.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && currentViewport === 'immersive') {
+          applyViewportMode('wide');
+        }
+      });
+
+      if (btnResetApp && iframeEl) {
+        btnResetApp.addEventListener('click', function () {
+          ensureIframeMounted();
+          if (iframeLoader) iframeLoader.classList.remove('hidden');
+          iframeEl.src = BIKAR_EMBED_URL;
+        });
+      }
+
+      function launchInEmbeddedPortal(preset, title) {
+        ensureIframeMounted();
+        applyViewportMode(preset || 'mobile');
+        if (focusedPill && title) {
+          focusedPill.textContent = title;
+          focusedPill.classList.remove('hidden');
+        }
+        scrollToTarget('#acceso-bikar');
+      }
+
+      document.querySelectorAll('[data-launch-preset]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var preset = btn.getAttribute('data-launch-preset') || 'mobile';
+          var title = btn.getAttribute('data-launch-title') || '';
+          launchInEmbeddedPortal(preset, title);
+        });
+      });
+
+      // =====================================================================
+      // 4. GSAP + SCROLLTRIGGER GPU-ACCELERATED ANIMATIONS
+      // =====================================================================
+      if (hasGsap) {
+        gsap.fromTo(
+          '.hero-stagger',
+          { y: 18, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.08, ease: 'power2.out', force3D: true }
+        );
+
+        gsap.fromTo(
+          '.hero-left-popup',
+          { x: -16, opacity: 0 },
+          { x: 0, opacity: 1, duration: 0.55, stagger: 0.1, delay: 0.15, ease: 'power2.out', force3D: true }
+        );
+        gsap.to('.sat-1', { x: 4, duration: 2.6, repeat: -1, yoyo: true, ease: 'sine.inOut', force3D: true });
+        gsap.to('.sat-3', { x: 4, duration: 2.9, delay: 0.35, repeat: -1, yoyo: true, ease: 'sine.inOut', force3D: true });
+        gsap.to('.sat-2', { x: 4, duration: 3.2, delay: 0.7, repeat: -1, yoyo: true, ease: 'sine.inOut', force3D: true });
+
+        if (window.ScrollTrigger) {
+          gsap.to('#global-progress-bar', {
+            scaleX: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: document.documentElement,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: 0.12
+            }
+          });
+
+          var mm = gsap.matchMedia();
+          mm.add({
+            isDesktop: '(min-width: 1024px)',
+            isMobile: '(max-width: 1023px)'
+          }, function (context) {
+            var isDesktop = context.conditions.isDesktop;
+            sequenceST = ScrollTrigger.create({
+              trigger: '#sequence-pin-container',
+              start: 'top top',
+              end: isDesktop ? '+=2300' : '+=1450',
+              pin: true,
+              scrub: 0.16,
+              fastScrollEnd: true,
+              anticipatePin: 1,
+              onUpdate: function (self) {
+                var exactFrame = Math.min(
+                  TOTAL_FRAMES - 1,
+                  Math.max(0, Math.round(self.progress * (TOTAL_FRAMES - 1)))
+                );
+                currentFrameIdx = exactFrame;
+                renderSequenceFrame(exactFrame, false);
+                updateSequenceUI(exactFrame, self.progress);
+              }
+            });
+          });
+
+          gsap.fromTo(
+            '.lists-heading-anim',
+            { y: 18, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.55,
+              stagger: 0.08,
+              ease: 'power2.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: '#servicios-bikar',
+                start: 'top 85%',
+                once: true
+              }
+            }
+          );
+
+          gsap.fromTo(
+            '.portal-reveal',
+            { y: 18, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.55,
+              stagger: 0.08,
+              ease: 'power2.out',
+              force3D: true,
+              scrollTrigger: {
+                trigger: '#acceso-bikar',
+                start: 'top 86%',
+                once: true
+              }
+            }
+          );
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
