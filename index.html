@@ -856,7 +856,8 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
         <span class="sec-index" aria-hidden="true">02</span>
       </div>
       <div class="xp reveal">
-        <div class="stage-visual">
+        <div class="stage-visual" data-stage="0">
+          <video class="stage-bg-video" src="https://i.imgur.com/LCQZUaV.mp4" muted loop playsinline preload="auto" disablepictureinpicture tabindex="-1" aria-hidden="true"></video>
           <div class="stage-head">
             <span class="stage-badge"><i class="dot-live" style="width:5px;height:5px"></i><span id="stage-badge-text">Etapa 01 · Solicitud</span></span>
             <span class="stage-idx" id="stage-step-label">PASO 01 / 05</span>
@@ -1178,6 +1179,12 @@ empieza <span class="grad">aquí.</span></h2>
 .hero-bg-media.ready{opacity:1}
 .hero-bg-media video{width:100%;height:100%;object-fit:cover;transform:translateZ(0);backface-visibility:hidden;will-change:transform}
 /* Video del hero (tarjeta) con esquinas curvas y reproducción fluida */
+.stage-visual::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;background:center/cover no-repeat;opacity:0;transition:opacity .6s ease}
+.stage-visual[data-stage="0"]::after{background-image:url('https://i.imgur.com/ixNqMlj.png');opacity:.16}
+.stage-visual[data-stage="1"]::after{background-image:url('https://i.imgur.com/npElBYV.png');opacity:.16}
+.stage-visual[data-stage="4"]::after{background-image:url('https://i.imgur.com/AafpgIk.png');opacity:.16}
+.stage-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;opacity:0;transition:opacity .6s ease;transform:translateZ(0);backface-visibility:hidden}
+.stage-visual[data-stage="2"] .stage-bg-video,.stage-visual[data-stage="3"] .stage-bg-video{opacity:.16}
 .map-card .hero-video{display:block;width:100%;height:auto;object-fit:cover;border-radius:20px;background:#08111b;animation:none;transform:translateZ(0);backface-visibility:hidden}
 /* Iconos blancos: menú cabecera, botón flotante y perfiles */
 .icon-btn svg,.float-menu svg,.role-switch button svg{color:#ffffff!important;stroke:#ffffff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -1609,6 +1616,15 @@ Comprobante local, sin presentación oficial.</span></div>
   }
   function paintStage(){
     var c = CHAPTERS[stageIdx];
+    var sv = $('.stage-visual');
+    if (sv){
+      sv.setAttribute('data-stage', String(stageIdx));
+      var sbv = $('.stage-bg-video', sv);
+      if (sbv){
+        if (stageIdx === 2 || stageIdx === 3){ sbv.muted = true; var sp = sbv.play(); if (sp && sp.catch) sp.catch(function(){}); }
+        else { try { sbv.pause(); } catch (err) {} }
+      }
+    }
     var num = $('#stage-number');
     if (num){
       num.textContent = c.n;
