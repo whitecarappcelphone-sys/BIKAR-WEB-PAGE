@@ -831,7 +831,7 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
           <span class="orbit-core"><svg><use href="#i-spark"/></svg></span>
         </div>
         <div class="map-card">
-          <img class="hero-image" src="https://i.imgur.com/ertW9yO.png" alt="RUTA EN VIVO — ruta urbana BIKAR con tarifa estimada de S/ 14.80 y conductor verificado Jorge R." width="560" height="520" decoding="async" fetchpriority="high">
+          <video class="hero-image hero-video" src="https://i.imgur.com/5TJm7By.mp4" autoplay muted loop playsinline preload="auto" disablepictureinpicture width="560" height="520" aria-label="RUTA EN VIVO — ruta urbana BIKAR"></video>
         </div>
         <p class="side-label">Seguridad en ruta — seguimiento GPS</p>
       </div>
@@ -1176,7 +1176,11 @@ empieza <span class="grad">aquí.</span></h2>
 .hero{isolation:isolate}
 .hero-bg-media{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#07111c;opacity:1;transition:opacity .5s ease}
 .hero-bg-media.ready{opacity:1}
-.hero-bg-media video{width:100%;height:100%;object-fit:cover;opacity:.95;filter:saturate(1.12) contrast(1.02)}
+.hero-bg-media video{width:100%;height:100%;object-fit:cover;transform:translateZ(0);backface-visibility:hidden;will-change:transform}
+/* Video del hero (tarjeta) con esquinas curvas y reproducción fluida */
+.map-card .hero-video{display:block;width:100%;height:auto;object-fit:cover;border-radius:20px;background:#08111b;animation:none;transform:translateZ(0);backface-visibility:hidden}
+/* Iconos blancos: menú cabecera, botón flotante y perfiles */
+.icon-btn svg,.float-menu svg,.role-switch button svg{color:#ffffff!important;stroke:#ffffff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .hero-bg-media::after{content:'';position:absolute;inset:0;background:
   radial-gradient(ellipse at 74% 42%,rgba(5,9,15,.12),transparent 62%),
   linear-gradient(90deg,rgba(5,9,15,.52) 0%,rgba(5,9,15,.3) 42%,rgba(5,9,15,.18) 68%,rgba(5,9,15,.42) 100%),
@@ -1559,6 +1563,8 @@ Comprobante local, sin presentación oficial.</span></div>
     }
     var heroBlock = $('.hero-bg-media');
     if (heroBlock) loadBlock(heroBlock);
+    var heroCardVideo = $('.hero-video');
+    if (heroCardVideo){ heroCardVideo.muted = true; var hp = heroCardVideo.play(); if (hp && hp.catch) hp.catch(function(){}); }
     function init(){
       if (!('IntersectionObserver' in window)){ blocks.forEach(loadBlock); return; }
       var obs = new IntersectionObserver(function(entries){
