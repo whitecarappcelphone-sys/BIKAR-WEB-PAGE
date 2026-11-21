@@ -937,7 +937,7 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
           <h2 id="portal-title" style="margin-top:8px">La app,
 <span class="stroke">sin misterio.</span></h2>
         </div>
-        <p class="lead" style="font-size:12.5px;color:#a6bccf;max-width:40ch;line-height:1.75">Cárgala solo cuando la necesites. Elegimos no descargar el portal al abrir esta página para que el sitio vuele.</p>
+        <p class="lead" style="font-size:12.5px;color:#a6bccf;max-width:40ch;line-height:1.75">Cárgala solo cuando la necesites.</p>
         <span class="sec-index" aria-hidden="true">04</span>
       </div>
       <div class="portal-toolbar reveal">
@@ -982,8 +982,8 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
               <div class="guide-step"><span class="gs-n">04</span><div><strong>Comparte y califica</strong><small>Comparte el viaje con alguien de confianza y cuéntanos cómo te fue.</small></div></div>
             </div>
             <div class="guide-actions">
-              <button class="modal-secondary" data-modal="safety-passengers" style="font-size:9.5px">Seguridad <svg><use href="#i-shield"/></svg></button>
-              <button class="modal-secondary" data-modal="permissions" style="font-size:9.5px">Permisos <svg><use href="#i-lock"/></svg></button>
+              <button class="modal-secondary" data-modal="safety-passengers" style="font-size:9.5px">Seguridad <svg viewBox="0 0 24 24" style="width:15px;height:15px" aria-hidden="true"><path d="M12 2 4 5v6c0 5.2 3.4 9.7 8 11 4.6-1.3 8-5.8 8-11V5l-8-3Z" fill="#1f6fd1"/><path d="M12 2v20c4.6-1.3 8-5.8 8-11V5l-8-3Z" fill="#1858a8"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+              <button class="modal-secondary" data-modal="permissions" style="font-size:9.5px">Permisos <svg viewBox="0 0 24 24" style="width:15px;height:15px" aria-hidden="true"><path d="M7.5 10V7a4.5 4.5 0 0 1 9 0v3" fill="none" stroke="#1858a8" stroke-width="2.2" stroke-linecap="round"/><rect x="4" y="10" width="16" height="12" rx="3" fill="#1f6fd1"/><circle cx="12" cy="15.3" r="1.8" fill="#fff"/><path d="M12 16.5v2.6" stroke="#fff" stroke-width="1.7" stroke-linecap="round"/></svg></button>
             </div>
             <p class="portal-disclaimer">BIKAR es una plataforma de intermediación. Cobertura, disponibilidad y requisitos se confirman en la app. Portal externo; puede tener sus propias políticas.</p>
           </div>
@@ -1013,6 +1013,14 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
               </g>
               <path class="peru-land" id="peru-land-shape" d=""/>
               <path id="peru-fill-pattern" d="" fill="url(#peruDots)" aria-hidden="true"/>
+              <clipPath id="peruClip"><path id="peru-clip-path" d=""/></clipPath>
+              <radialGradient id="radarSweepGrad" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(205 300) scale(270)"><stop offset="0" stop-color="rgba(79,233,255,.55)"/><stop offset="1" stop-color="rgba(79,233,255,0)"/></radialGradient>
+              <g clip-path="url(#peruClip)" aria-hidden="true" style="pointer-events:none">
+                <g fill="none" stroke="rgba(79,233,255,.18)" stroke-width=".8"><circle cx="205" cy="300" r="60"/><circle cx="205" cy="300" r="120"/><circle cx="205" cy="300" r="180"/><circle cx="205" cy="300" r="240"/></g>
+                <circle cx="205" cy="300" r="10" fill="none" stroke="rgba(79,233,255,.6)" stroke-width="1.4"><animate attributeName="r" from="10" to="280" dur="3.6s" repeatCount="indefinite"/><animate attributeName="opacity" from=".9" to="0" dur="3.6s" repeatCount="indefinite"/></circle>
+                <circle cx="205" cy="300" r="10" fill="none" stroke="rgba(79,233,255,.6)" stroke-width="1.4"><animate attributeName="r" from="10" to="280" dur="3.6s" begin="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" from=".9" to="0" dur="3.6s" begin="1.8s" repeatCount="indefinite"/></circle>
+                <g><path d="M205 300 L205 20 A280 280 0 0 1 403 102 Z" fill="url(#radarSweepGrad)" opacity=".35"/><line x1="205" y1="300" x2="205" y2="20" stroke="rgba(79,233,255,.7)" stroke-width="1.2"/><animateTransform attributeName="transform" type="rotate" from="0 205 300" to="360 205 300" dur="6s" repeatCount="indefinite"/></g>
+              </g>
               <text x="210" y="300" text-anchor="middle" aria-hidden="true" style="fill:rgba(124,196,232,.32);font-family:'Space Grotesk',sans-serif;font-size:19px;letter-spacing:.34em;font-weight:600">PERÚ</text>
               <g id="map-markers"></g>
             </svg>
@@ -1038,6 +1046,9 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
     </div>
   </section>
   <section class="social-section" id="redes-bikar" aria-labelledby="social-title">
+    <div class="social-bg-media" aria-hidden="true">
+      <video data-ambient src="https://i.imgur.com/o4y7e1j.mp4" muted loop playsinline preload="metadata" disablepictureinpicture tabindex="-1"></video>
+    </div>
     <div class="shell social-grid-wrap">
       <div class="social-intro reveal">
         <span class="kicker">06 / Comunidad</span>
@@ -1055,7 +1066,7 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
   </section>
   <section class="closing" aria-labelledby="closing-title">
     <div class="closing-bg-media" id="closing-bg-media" aria-hidden="true">
-      <video data-bg-video="https://i.imgur.com/KlfN8LO.mp4" muted loop playsinline preload="none" tabindex="-1"></video>
+      <video data-ambient data-bg-video="https://i.imgur.com/GQ6l9vl.mp4" src="https://i.imgur.com/GQ6l9vl.mp4" muted loop playsinline preload="metadata" disablepictureinpicture tabindex="-1"></video>
     </div>
     <div class="shell closing-in reveal">
       <span class="kicker" style="justify-content:center">BIKAR · Tu ciudad, en movimiento</span>
@@ -1064,9 +1075,9 @@ empieza <span class="grad">aquí.</span></h2>
       <p>Elige tu perfil, revisa las condiciones y abre la app cuando estés listo. Sin descargas forzadas y con la información clara.</p>
       <div class="closing-actions">
         <button class="btn btn-primary" data-launch="mobile" data-launch-title="BIKAR APP">Abrir la app <svg class="arrow"><use href="#i-arrow-right"/></svg></button>
-        <button class="btn btn-ghost" data-modal="claims"><svg><use href="#i-book"/></svg>Libro de reclamaciones</button>
+        <button class="btn btn-ghost" data-modal="claims"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.3C10 4.8 6.8 4.3 2.5 4.8v13.5c4.3-.5 7.5 0 9.5 1.5V6.3Z" fill="#fff"/><path d="M12 6.3c2-1.5 5.2-2 9.5-1.5v13.5c-4.3-.5-7.5 0-9.5 1.5V6.3Z" fill="#fff" opacity=".72"/><path d="M5 8.5h4M5 11.5h4M15 8.5h4M15 11.5h4" stroke="#0b1b29" stroke-width="1.1" stroke-linecap="round" opacity=".55"/></svg>Libro de reclamaciones</button>
       </div>
-      <div class="closing-meta"><span><svg><use href="#i-shield"/></svg>Conductores verificados</span><span><svg><use href="#i-card"/></svg>Tarifa antes de confirmar</span><span><svg><use href="#i-headphones"/></svg>Soporte 24/7</span></div>
+      <div class="closing-meta"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5.2 3.4 9.7 8 11 4.6-1.3 8-5.8 8-11V5l-8-3Z" fill="#fff"/><path d="m8.5 12 2.5 2.5 4.5-5" fill="none" stroke="#0b1b29" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Conductores verificados</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2.5" fill="#fff"/><rect x="2" y="8.3" width="20" height="2.8" fill="#0b1b29"/><rect x="5" y="14" width="6" height="2" rx="1" fill="#0b1b29"/></svg>Tarifa antes de confirmar</span><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 13v-1a7.5 7.5 0 0 1 15 0v1" fill="none" stroke="#fff" stroke-width="2"/><rect x="2.5" y="12" width="5" height="8" rx="2" fill="#fff"/><rect x="16.5" y="12" width="5" height="8" rx="2" fill="#fff"/><path d="M19 20c0 1.4-2 2-5.5 2" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>Soporte 24/7</span></div>
     </div>
   </section>
 </main>
@@ -1184,6 +1195,13 @@ empieza <span class="grad">aquí.</span></h2>
 .stage-visual[data-stage="4"]::after{background-image:url('https://i.imgur.com/AafpgIk.png');opacity:.16}
 .stage-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;pointer-events:none;opacity:0;transition:opacity .6s ease;transform:translateZ(0);backface-visibility:hidden}
 .stage-visual[data-stage="2"] .stage-bg-video,.stage-visual[data-stage="3"] .stage-bg-video{opacity:.16}
+.social-section{position:relative;isolation:isolate;overflow:hidden}
+.social-bg-media{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;opacity:0;transition:opacity 1s ease}
+.social-bg-media.ready{opacity:.14}
+.social-bg-media video,.closing-bg-media video{width:100%;height:100%;object-fit:cover;transform:translateZ(0);backface-visibility:hidden}
+.social-bg-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#05090f,rgba(5,9,15,.2) 30%,rgba(5,9,15,.2) 70%,#05090f)}
+.closing-bg-media.ready{opacity:.35}
+.closing-meta svg{color:#fff!important}
 .map-card .hero-video{display:block;width:100%;height:auto;object-fit:cover;border-radius:20px;background:#08111b;animation:none;transform:translateZ(0);backface-visibility:hidden}
 /* Iconos blancos: menú cabecera, botón flotante y perfiles */
 .icon-btn svg,.float-menu svg,.role-switch button svg{color:#ffffff!important;stroke:#ffffff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
@@ -1786,7 +1804,7 @@ Comprobante local, sin presentación oficial.</span></div>
   }
   renderChecks();
   /* ---------- Lazy app portal ---------- */
-  var APP_URL = 'https://cazcadena-cmd.github.io/BIKAR/';
+  var APP_URL = 'https://whitecarappcelphone-sys.github.io/PRUEBAS-BIKAR/';
   var device = $('#device-shell');
   var deviceView = $('#device-view');
   var deviceLoading = $('#device-loading');
@@ -1916,6 +1934,38 @@ Comprobante local, sin presentación oficial.</span></div>
     updateChips(region);
     closeMapPop();
   }
+  /* Imágenes autóctonas de cada ciudad (Wikipedia en español). */
+  var CITY_WIKI = {
+    lima:['Plaza_Mayor_de_Lima','Lima'], callao:['Fortaleza_del_Real_Felipe','Callao'],
+    trujillo:['Plaza_de_Armas_de_Trujillo','Trujillo_(Perú)'], chepen:['Chepén'], pacasmayo:['Muelle_de_Pacasmayo','Pacasmayo'],
+    chimbote:['Chimbote'], huaraz:['Huaraz'], casma:['Sechín','Casma'], huarmey:['Huarmey'],
+    chiclayo:['Catedral_de_Chiclayo','Chiclayo'], lambayeque:['Museo_Tumbas_Reales_de_Sipán','Lambayeque_(ciudad)'], ferrenafe:['Ferreñafe'], monsefu:['Monsefú'],
+    piura:['Catedral_de_Piura','Piura'], sullana:['Sullana'], talara:['Talara']
+  };
+  var cityImgCache = {};
+  function setCityImage(img, city, fallback){
+    img.dataset.city = city.id;
+    if (cityImgCache[city.id]){ img.src = cityImgCache[city.id]; return; }
+    img.removeAttribute('src');
+    var titles = (CITY_WIKI[city.id] || []).slice();
+    function next(){
+      if (img.dataset.city !== city.id) return;
+      var t = titles.shift();
+      if (!t || !window.fetch){ cityImgCache[city.id] = fallback; img.src = fallback; return; }
+      fetch('https://es.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(t))
+        .then(function(r){ return r.ok ? r.json() : null; })
+        .then(function(d){
+          var src = d && ((d.thumbnail && d.thumbnail.source) || (d.originalimage && d.originalimage.source));
+          if (src && !/\.svg/i.test(src)){
+            src = src.replace(/\/(\d+)px-/, '/640px-');
+            cityImgCache[city.id] = src;
+            if (img.dataset.city === city.id) img.src = src;
+          } else next();
+        })
+        .catch(next);
+    }
+    next();
+  }
   function closeMapPop(){
     var pop = $('#map-pop');
     if (pop) pop.classList.remove('show');
@@ -1943,8 +1993,9 @@ Comprobante local, sin presentación oficial.</span></div>
     pop.style.top = Math.max(8, pctY) + '%';
     var img = $('#map-pop-img');
     if (img){
-      img.src = 'https://images.pexels.com/photos/' + city.image + '/pexels-photo-' + city.image + '.jpeg?auto=compress&cs=tinysrgb&w=640&h=400&fit=crop';
+      var fallback = 'https://images.pexels.com/photos/' + city.image + '/pexels-photo-' + city.image + '.jpeg?auto=compress&cs=tinysrgb&w=640&h=400&fit=crop';
       img.alt = 'Imagen referencial de ' + city.name;
+      setCityImage(img, city, fallback);
     }
     var nameEl = $('#map-pop-name'); if (nameEl) nameEl.textContent = city.name;
     var regionEl = $('#map-pop-region'); if (regionEl) regionEl.textContent = city.note;
@@ -1958,6 +2009,7 @@ Comprobante local, sin presentación oficial.</span></div>
   var realPath = PERU_OUTLINE.map(function(point, i){ var xy = project(point); return (i ? 'L' : 'M') + xy[0].toFixed(1) + ' ' + xy[1].toFixed(1); }).join(' ') + ' Z';
   if (landShape) landShape.setAttribute('d', realPath);
   if (patternFill) patternFill.setAttribute('d', realPath);
+  var clipShape = $('#peru-clip-path'); if (clipShape) clipShape.setAttribute('d', realPath);
   renderRegions(); renderMarkers(); selectRegion('lima');
   var popClose = $('#map-pop-close');
   if (popClose) popClose.addEventListener('click', function(){ closeMapPop(); });
@@ -2059,8 +2111,7 @@ Comprobante local, sin presentación oficial.</span></div>
     var meta = [
       ['Categoría', service.catLabel],
       ['Acceso', service.mode === 'wide' ? 'Portal web / amplio' : 'App móvil'],
-      ['Cobertura', 'Según ciudad y unidad'],
-      ['Videos', 'Video ilustrativo 9:16']
+      ['Cobertura', 'Según ciudad y unidad']
     ].map(function(item){ return '<div><dt>' + item[0] + '</dt><dd>' + item[1] + '</dd></div>'; }).join('');
     content.innerHTML = '<div class="service-modal-grid">' +
       '<div class="service-video-col">' +
@@ -2262,6 +2313,24 @@ Comprobante local, sin presentación oficial.</span></div>
 </script>
 <noscript><style>.reveal{opacity:1!important;transform:none!important}.device-placeholder{display:flex!important}</style></noscript>
 <script>
+/* Videos ambientales tenues: solo se reproducen mientras están visibles (fluidez). */
+(function(){
+  var vids = Array.prototype.slice.call(document.querySelectorAll('video[data-ambient]'));
+  vids.forEach(function(v){
+    v.muted = true;
+    v.addEventListener('loadeddata', function(){ if (v.parentNode) v.parentNode.classList.add('ready'); }, { once:true });
+  });
+  function play(v){ var p = v.play(); if (p && p.catch) p.catch(function(){}); if (v.parentNode) v.parentNode.classList.add('ready'); }
+  if (!('IntersectionObserver' in window)){ vids.forEach(play); return; }
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      var v = en.target.querySelector('video[data-ambient]');
+      if (!v) return;
+      if (en.isIntersecting) play(v); else { try { v.pause(); } catch (e) {} }
+    });
+  }, { rootMargin: '150px 0px' });
+  vids.forEach(function(v){ if (v.parentNode) obs.observe(v.parentNode); });
+})();
 /* Red de seguridad visual: nunca dejamos contenido oculto si una función no está disponible. */
 window.setTimeout(function(){
   document.querySelectorAll('.reveal:not(.in)').forEach(function(el){ el.classList.add('in'); });
