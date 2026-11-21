@@ -795,7 +795,7 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
 <main id="inicio">
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-bg-media" id="hero-bg-media" aria-hidden="true">
-      <video data-bg-video="https://i.imgur.com/CuSh8t9.mp4" autoplay muted loop playsinline preload="auto" tabindex="-1"></video>
+      <video data-bg-video="https://i.imgur.com/CuSh8t9.mp4" muted loop playsinline preload="none" tabindex="-1"></video>
       <span class="bg-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m9 5 11 7-11 7V5Z"/></svg>BIKAR en movimiento · Video</span>
     </div>
     <div class="hero-watermark" aria-hidden="true">BIKAR</div>
@@ -1180,7 +1180,7 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
 .city-marker:focus-visible .mk{fill:var(--lime);stroke:#fff}
 /* ===== Video ambiental de fondo ===== */
 .hero{isolation:isolate}
-.hero-bg-media{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#07111c;opacity:1;transition:opacity .5s ease}
+.hero-bg-media{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#07111c;opacity:0;transition:opacity 1.1s ease}
 .hero-bg-media.ready{opacity:1}
 .hero-bg-media video{width:100%;height:100%;object-fit:cover;opacity:.92;filter:saturate(1.12) contrast(1.02)}
 .hero-bg-media::after{content:'';position:absolute;inset:0;background:
@@ -1570,7 +1570,7 @@ Teléfono / WhatsApp: [COMPLETAR]</div>
 
   /* ---------- Ambient background videos (originales, carga diferida) ---------- */
   (function initAmbientVideos(){
-    var blocks = $$('.closing-bg-media');
+    var blocks = $$('.hero-bg-media, .closing-bg-media');
     if (!blocks.length) return;
     var saveData = navigator.connection && (navigator.connection.saveData || /2g/.test(navigator.connection.effectiveType || ''));
     if (reduceMotion.matches || saveData) return;
@@ -1582,6 +1582,7 @@ Teléfono / WhatsApp: [COMPLETAR]</div>
       video.src = video.getAttribute('data-bg-video');
       video.addEventListener('loadeddata', function(){ block.classList.add('ready'); }, { once:true });
       var p = video.play(); if (p && p.catch) p.catch(function(){});
+      window.setTimeout(function(){ block.classList.add('ready'); }, 6000);
     }
     function init(){
       if (!('IntersectionObserver' in window)){ blocks.forEach(loadBlock); return; }
