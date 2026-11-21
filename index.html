@@ -100,9 +100,9 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
 .head-right{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .head-status{display:none;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--line);border-radius:99px;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;color:#b7cfdf;text-transform:uppercase}
 .head-cta{display:none}
-.menu-trigger{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid var(--line-2);border-radius:9px;font-size:11.5px;font-weight:700;color:#dcf1ff;background:rgba(124,196,232,.04)}
+.menu-trigger{display:inline-flex;align-items:center;gap:8px;padding:10px 13px;border:1px solid var(--line-2);border-radius:9px;font-size:11.5px;font-weight:700;color:#ffffff;background:rgba(124,196,232,.04)}
 .menu-trigger:hover{border-color:var(--cyan);background:rgba(124,196,232,.11)}
-.menu-trigger svg{width:15px;height:15px}
+.menu-trigger svg{width:16px;height:16px;color:#ffffff}
 .scroll-line{position:absolute;left:0;right:0;bottom:-1px;height:2px;background:rgba(255,255,255,.04);overflow:hidden}
 .scroll-line span{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--blue),var(--cyan) 55%,var(--lime));transform-origin:left;transform:scaleX(0)}
 .mobile-nav{display:none;position:fixed;inset:var(--head) 0 0;z-index:75;background:rgba(5,9,15,.985);backdrop-filter:blur(20px);padding:26px 20px 110px;overflow-y:auto}
@@ -131,7 +131,7 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
 .hero-cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:26px}
 .role-switch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:6px;border:1px solid var(--line);border-radius:14px;background:rgba(9,18,29,.6);max-width:520px;margin-bottom:26px}
 .role-switch button{display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 6px;border-radius:9px;font-size:11.5px;font-weight:700;color:#a7bdd2;transition:background .2s,color .2s}
-.role-switch button svg{width:15px;height:15px}
+.role-switch button svg{width:16px;height:16px;color:#ffffff}
 .role-switch button[aria-pressed="true"]{background:var(--lime);color:#0f1905;box-shadow:0 6px 18px -10px rgba(216,242,107,.85)}
 .hero-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line);padding-top:16px;max-width:540px;gap:12px}
 .hero-stats div{display:flex;flex-direction:column;gap:2px}
@@ -150,10 +150,10 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes radar{0%{transform:scale(.55);opacity:0}14%{opacity:.85}100%{transform:scale(1.72);opacity:0}}
 @keyframes corePulse{0%,100%{box-shadow:0 0 16px rgba(79,233,255,.65)}50%{box-shadow:0 0 30px rgba(79,233,255,.95),0 0 46px rgba(79,233,255,.4)}}
-.map-card{position:relative;min-height:0;padding:0;background:#08111b;border:1px solid var(--line-2);clip-path:polygon(0 0,calc(100% - 40px) 0,100% 40px,100% 100%,0 100%);overflow:hidden}
+.map-card{position:relative;min-height:0;padding:0;background:#08111b;border:1px solid var(--line-2);border-radius:20px;overflow:hidden}
 .hero-image{display:block;width:100%;height:auto;object-fit:cover;animation:imageIn 1s cubic-bezier(.22,1,.36,1) both}
 @keyframes imageIn{from{opacity:0;transform:scale(1.04)}to{opacity:1;transform:none}}
-.map-card::after{content:'';position:absolute;top:0;right:0;width:40px;height:40px;background:linear-gradient(225deg,transparent 46%,rgba(79,233,255,.38) 48%,rgba(79,233,255,.38) 52%,transparent 54%);pointer-events:none}
+.map-card::after{content:'';position:absolute;inset:0;border-radius:20px;box-shadow:inset 0 1px 0 rgba(255,255,255,.08),inset 0 -40px 70px -40px rgba(0,0,0,.55);pointer-events:none}
 .map-topline{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px;position:relative;z-index:3}
 .map-live{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:8.5px;letter-spacing:.12em;color:#b7ccdd;text-transform:uppercase;padding:5px 8px;border:1px solid var(--line);border-radius:99px;background:rgba(5,12,20,.55)}
 .map-live i{width:5px;height:5px;border-radius:50%;background:var(--lime);display:inline-block;animation:breathe 2.4s infinite}
@@ -698,6 +698,8 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
 <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
 <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
 <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h18"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="3.8"/><path d="M4.2 20.5a7.8 7.8 0 0 1 15.6 0"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="m3 11.5 9-8 9 8"/><path d="M5.6 10v9h12.8v-9"/><path d="M10 19v-5.4h4V19"/></symbol>
 <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
 <symbol id="i-car" viewBox="0 0 24 24"><path d="m5 8 2-5h10l2 5M3 9h18v9H3zM5 18v3m14-3v3M3 9l2-1h14l2 1M7 13h.01M17 13h.01M8 16h8"/></symbol>
 <symbol id="i-taxi" viewBox="0 0 24 24"><path d="m5 9 2-5h10l2 5M3 10h18v9H3zM5 19v2m14-2v2M6 14h2m8 0h2M10 2h4v3"/></symbol>
@@ -795,7 +797,7 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
 <main id="inicio">
   <section class="hero" aria-labelledby="hero-title">
     <div class="hero-bg-media" id="hero-bg-media" aria-hidden="true">
-      <video data-bg-video="https://i.imgur.com/CuSh8t9.mp4" muted loop playsinline preload="none" tabindex="-1"></video>
+      <video data-bg-video="https://i.imgur.com/CuSh8t9.mp4" autoplay muted loop playsinline preload="auto" tabindex="-1"></video>
       <span class="bg-badge"><svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m9 5 11 7-11 7V5Z"/></svg>BIKAR en movimiento · Video</span>
     </div>
     <div class="hero-watermark" aria-hidden="true">BIKAR</div>
@@ -809,9 +811,9 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
         <h1 class="hero-title reveal" id="hero-title">Muévete.<br><span class="grad">Distinto.</span></h1>
         <p class="hero-copy reveal" id="hero-copy">Pasajeros, conductores y comercios en una misma red. <strong>Tarifa clara antes de confirmar</strong>, unidades verificadas y asistencia siempre a un toque.</p>
         <div class="role-switch reveal" role="group" aria-label="Elige tu perfil">
-          <button data-role="pasajero" aria-pressed="true"><svg><use href="#i-location"/></svg>Pasajero</button>
+          <button data-role="pasajero" aria-pressed="true"><svg><use href="#i-user"/></svg>Pasajero</button>
           <button data-role="conductor" aria-pressed="false"><svg><use href="#i-car"/></svg>Conductor</button>
-          <button data-role="comercio" aria-pressed="false"><svg><use href="#i-package"/></svg>Comercio</button>
+          <button data-role="comercio" aria-pressed="false"><svg><use href="#i-home"/></svg>Comercio</button>
         </div>
         <div class="hero-cta reveal">
           <button class="btn btn-primary" id="hero-primary" data-launch="mobile" data-launch-title="BIKAR · Pasajero">Pedir un viaje <svg class="arrow"><use href="#i-arrow-right"/></svg></button>
@@ -1180,13 +1182,13 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
 .city-marker:focus-visible .mk{fill:var(--lime);stroke:#fff}
 /* ===== Video ambiental de fondo ===== */
 .hero{isolation:isolate}
-.hero-bg-media{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#07111c;opacity:0;transition:opacity 1.1s ease}
+.hero-bg-media{position:absolute;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:#07111c;opacity:1;transition:opacity .5s ease}
 .hero-bg-media.ready{opacity:1}
-.hero-bg-media video{width:100%;height:100%;object-fit:cover;opacity:.92;filter:saturate(1.12) contrast(1.02)}
+.hero-bg-media video{width:100%;height:100%;object-fit:cover;opacity:.95;filter:saturate(1.12) contrast(1.02)}
 .hero-bg-media::after{content:'';position:absolute;inset:0;background:
-  radial-gradient(ellipse at 72% 44%,rgba(5,9,15,.08),transparent 68%),
-  linear-gradient(90deg,rgba(5,9,15,.95) 4%,rgba(5,9,15,.82) 44%,rgba(5,9,15,.45) 70%,rgba(5,9,15,.78)),
-  linear-gradient(180deg,rgba(5,9,15,.62) 0%,rgba(5,9,15,.16) 30%,rgba(5,9,15,.42) 74%,#05090f 100%)}
+  radial-gradient(ellipse at 74% 42%,rgba(5,9,15,.12),transparent 62%),
+  linear-gradient(90deg,rgba(5,9,15,.52) 0%,rgba(5,9,15,.3) 42%,rgba(5,9,15,.18) 68%,rgba(5,9,15,.42) 100%),
+  linear-gradient(180deg,rgba(5,9,15,.52) 0%,rgba(5,9,15,.16) 30%,rgba(5,9,15,.42) 74%,rgba(5,9,15,.9) 100%)}
 .hero-bg-media .bg-badge{position:absolute;right:18px;bottom:18px;z-index:3;display:none;align-items:center;gap:6px;font-family:var(--mono);font-size:7px;letter-spacing:.14em;text-transform:uppercase;color:rgba(200,240,255,.62);padding:5px 8px;border:1px solid rgba(79,233,255,.18);border-radius:99px;background:rgba(5,12,20,.5)}
 @media(min-width:900px){.hero-bg-media .bg-badge{display:inline-flex}}
 .closing{isolation:isolate}
