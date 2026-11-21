@@ -1027,7 +1027,7 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
             <span class="map-hint">Toca un punto del mapa</span>
             <div class="map-pop" id="map-pop" role="status" aria-live="polite">
               <button type="button" class="mp-close" id="map-pop-close" aria-label="Cerrar la imagen de la ciudad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><use href="#i-x"></use></svg></button>
-              <img id="map-pop-img" alt="" loading="lazy" decoding="async">
+              <img id="map-pop-img" alt="" decoding="async" referrerpolicy="no-referrer">
               <div class="mp-body">
                 <span class="mp-eyebrow">Red BIKAR · Perú</span>
                 <strong id="map-pop-name"></strong>
@@ -1200,7 +1200,8 @@ empieza <span class="grad">aquí.</span></h2>
 .social-bg-media.ready{opacity:.14}
 .social-bg-media video,.closing-bg-media video{width:100%;height:100%;object-fit:cover;transform:translateZ(0);backface-visibility:hidden}
 .social-bg-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#05090f,rgba(5,9,15,.2) 30%,rgba(5,9,15,.2) 70%,#05090f)}
-.closing-bg-media.ready{opacity:.35}
+.closing-bg-media.ready{opacity:.9}
+.closing-bg-media::after{background:radial-gradient(ellipse at 50% 55%,rgba(5,10,17,.25),rgba(5,9,15,.55) 80%),linear-gradient(180deg,rgba(5,9,15,.75),rgba(5,10,17,.1) 25%,rgba(5,10,17,.1) 75%,rgba(5,9,15,.75))}
 .closing-meta svg{color:#fff!important}
 .map-card .hero-video{display:block;width:100%;height:auto;object-fit:cover;border-radius:20px;background:#08111b;animation:none;transform:translateZ(0);backface-visibility:hidden}
 /* Iconos blancos: menú cabecera, botón flotante y perfiles */
@@ -1955,12 +1956,22 @@ Comprobante local, sin presentación oficial.</span></div>
       fetch('https://es.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(t))
         .then(function(r){ return r.ok ? r.json() : null; })
         .then(function(d){
-          var src = d && ((d.thumbnail && d.thumbnail.source) || (d.originalimage && d.originalimage.source));
-          if (src && !/\.svg/i.test(src)){
-            src = src.replace(/\/(\d+)px-/, '/640px-');
-            cityImgCache[city.id] = src;
-            if (img.dataset.city === city.id) img.src = src;
-          } else next();
+          var cands = [];
+          if (d && d.thumbnail && d.thumbnail.source) cands.push(d.thumbnail.source);
+          if (d && d.originalimage && d.originalimage.source) cands.push(d.originalimage.source);
+          cands = cands.filter(function(s){ return !/\.svg/i.test(s); });
+          if (!cands.length){ next(); return; }
+          function tryCand(){
+            if (img.dataset.city !== city.id) return;
+            var s = cands.shift();
+            if (!s){ next(); return; }
+            var probe = new Image();
+            probe.referrerPolicy = 'no-referrer';
+            probe.onload = function(){ cityImgCache[city.id] = s; if (img.dataset.city === city.id) img.src = s; };
+            probe.onerror = tryCand;
+            probe.src = s;
+          }
+          tryCand();
         })
         .catch(next);
     }
