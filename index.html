@@ -905,7 +905,6 @@ html{scrollbar-gutter:stable;scrollbar-color:#2b5474 #070d16}
       </div>
       <div class="sec-head-top reveal" style="margin-bottom:14px">
         <div class="filter-bar" id="filter-bar" role="group" aria-label="Filtrar servicios"></div>
-        <span class="sec-pill"><i></i>Videos bajo demanda</span>
       </div>
       <div class="svc-layout">
         <div class="svc-list reveal" id="svc-list" aria-live="polite"></div>
@@ -1715,7 +1714,7 @@ Comprobante local, sin presentación oficial.</span></div>
       return '<article class="svc-card" data-card="' + s.id + '">' +
         '<div class="svc-main"><div class="svc-top"><span class="svc-num">' + String(index).padStart(2,'0') + ' / 06</span><span class="svc-cat">' + s.catLabel + '</span></div>' +
         '<h3>' + s.name + '</h3><p>' + s.desc + '</p><div class="svc-chips">' + chips + '</div></div>' +
-        '<div class="svc-media"><video class="svc-thumb" data-preview="' + s.id + '" data-src="' + s.video + '" poster="' + s.poster + '" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true"></video><span class="svc-play"><svg viewBox="0 0 24 24" width="9" height="9" fill="currentColor" aria-hidden="true"><use href="#i-play"></use></svg></span><span class="svc-cta"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg></span></div>' +
+        '<div class="svc-media"><video class="svc-thumb" data-preview="' + s.id + '" data-src="' + s.video + '" poster="' + s.poster + '" muted loop playsinline autoplay preload="metadata" disablepictureinpicture tabindex="-1" aria-hidden="true"></video><span class="svc-cta"><svg viewBox="0 0 24 24" width="10" height="10" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg></span></div>' +
         '<button type="button" class="svc-open" data-service="' + s.id + '" aria-label="' + s.name + ': ver detalle y video"></button>' +
         '</article>';
     }).join('');
@@ -1741,19 +1740,16 @@ Comprobante local, sin presentación oficial.</span></div>
     cards.forEach(function(card){
       var video = $('.svc-thumb', card);
       if (!video) return;
-      card.addEventListener('pointerenter', function(e){ if (e.pointerType === 'touch') return; start(video); });
-      card.addEventListener('pointerleave', function(){ stop(video); });
-      card.addEventListener('focusin', function(){ start(video); });
-      card.addEventListener('focusout', function(){ stop(video); });
+      video.muted = true;
     });
-    if (!('IntersectionObserver' in window)){ cards.forEach(function(card){ prime($('.svc-thumb', card)); }); return; }
+    if (!('IntersectionObserver' in window)){ cards.forEach(function(card){ var v = $('.svc-thumb', card); if (v) start(v); }); return; }
     var obs = new IntersectionObserver(function(entries){
       entries.forEach(function(en){
-        if (!en.isIntersecting) return;
-        prime($('.svc-thumb', en.target));
-        obs.unobserve(en.target);
+        var v = $('.svc-thumb', en.target);
+        if (!v) return;
+        if (en.isIntersecting) start(v); else stop(v);
       });
-    }, { rootMargin: '260px 0px' });
+    }, { rootMargin: '200px 0px' });
     cards.forEach(function(card){ obs.observe(card); });
   }
   renderFilters(); renderServices();
@@ -2069,7 +2065,7 @@ Comprobante local, sin presentación oficial.</span></div>
     content.innerHTML = '<div class="service-modal-grid">' +
       '<div class="service-video-col">' +
         '<div class="form-error hidden" id="service-video-error" role="status">No se pudo cargar el video. <a href="' + service.video + '" target="_blank" rel="noopener noreferrer">Abrir el video directamente</a>.</div>' +
-        '<video class="modal-video" controls playsinline preload="metadata" poster="' + service.poster + '" src="' + service.video + '" aria-label="Video ilustrativo de ' + service.name + '"></video>' +
+        '<video class="modal-video" controls autoplay muted loop playsinline preload="auto" disablepictureinpicture style="transform:translateZ(0)" poster="' + service.poster + '" src="' + service.video + '" aria-label="Video ilustrativo de ' + service.name + '"></video>' +
         '<p class="service-foot" style="margin:2px 0 0">Video ilustrativo original de BIKAR · formato vertical.</p>' +
       '</div>' +
       '<div class="service-copy-col">' +
@@ -2085,6 +2081,7 @@ Comprobante local, sin presentación oficial.</span></div>
     var video = $('video', dlg);
     if (video){ video.addEventListener('error', function(){ var er = $('#service-video-error', dlg); if (er) er.classList.remove('hidden'); }); }
     prepareDialog(dlg, trigger);
+    if (video){ video.muted = true; var mp = video.play(); if (mp && mp.catch) mp.catch(function(){}); }
   }
   /* ---------- Menu ---------- */
   function initMenu(dlg){
